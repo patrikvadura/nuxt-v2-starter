@@ -10,8 +10,6 @@ $calcWidth: calc((100vw - 30rem) / (75 - 30));
 //typography
 $fontFamily: "Brandon Grotesque", helvetica, sans-serif;
 
-//font-sizes
-
 //font-weight
 $fontWeightRegular: normal;
 $fontWeightLight: 300;
@@ -44,3 +42,4 @@ $lightHover: #4f4f4f;
 $typographyHover: $black;
 
 @import 'mixins';
+@import 'typography';

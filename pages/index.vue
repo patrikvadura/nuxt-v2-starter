@@ -1,10 +1,10 @@
 <template>
   <div class="nuxtStarter">
-    <nuxt-link class="nuxtStarterLogo" to="/">
-      <BaseLogo />
-    </nuxt-link>
+    <Header
+      :variant="'01'"
+    />
 
-    <div class="pt-5">
+    <div class="mt-5 pt-5">
       <h2>
         Welcome to your Nuxt v2 Starter
       </h2>
@@ -22,21 +22,18 @@
 </template>
 
 <script>
+import Header from '~/components/header/Header.vue'
+
 export default {
+  components: {
+    Header
+  }
 }
 </script>
 
 <style lang="scss" scoped>
 .nuxtStarter {
-  padding: 3rem;
-
-  &Logo {
-    @include flex ($direction: null, $justify: center, $align: center);
-
-    ::v-deep svg {
-      width: 10rem;
-    }
-  }
+  width: 100%;
 
   h2,
   .link {

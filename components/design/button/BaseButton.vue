@@ -80,7 +80,7 @@ export default {
     width: 15rem;
     font-size: 1rem;
 
-    @include media-queries(phone) {
+    @include media-queries(xs) {
       width: 100%;
     }
   }

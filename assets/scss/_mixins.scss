@@ -1,10 +1,17 @@
 //basic
-@mixin fontSize($min, $max) {
-  font-size: unquote("clamp(#{$min} * 1rem, calc(#{$min} * 1rem + (#{$max} - #{$min}) * #{$calcWidth}), #{$max} * 1rem)");
-}
-
 @mixin shadow($color, $intensity) {
   box-shadow: .15rem .15rem .25rem 0 rgba($color, $intensity);
+}
+
+//clamp
+@mixin clamp($property, $axis, $min, $max) {
+  @if $axis == 'x' {
+    #{$property}: 0 unquote("clamp(#{$min} * 1rem, calc(#{$min} * 1rem + (#{$max} - #{$min}) * #{$calcWidth}), #{$max} * 1rem)");
+  } @else if $axis == 'y' {
+    #{$property}: unquote("clamp(#{$min} * 1rem, calc(#{$min} * 1rem + (#{$max} - #{$min}) * #{$calcWidth}), #{$max} * 1rem)") 0;
+  } @else {
+    #{$property}: unquote("clamp(#{$min} * 1rem, calc(#{$min} * 1rem + (#{$max} - #{$min}) * #{$calcWidth}), #{$max} * 1rem)");
+  }
 }
 
 //flex
@@ -21,15 +28,15 @@
 
 //mediaQueries
 @mixin media-queries($size) {
-  @if $size == phone {
+  @if $size == xs {
     @media (max-width: 599px) { @content; }
-  } @else if $size == tablet-portrait {
+  } @else if $size == sm {
     @media (min-width: 600px) { @content; }
-  } @else if $size == tablet-landscape {
+  } @else if $size == md {
     @media (min-width: $wrapS) { @content; }
-  } @else if $size == desktop {
+  } @else if $size == lg {
     @media (min-width: $wrapM) { @content; }
-  } @else if $size == large-desktop {
+  } @else if $size == xl {
     @media (min-width: $wrapL) { @content; }
   }
 }
