@@ -1,0 +1,43 @@
+@import 'config';
+
+//reset
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+*,
+*:focus,
+*:active {
+  outline: none;
+}
+
+html {
+  font-family: $fontFamily;
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0;
+  padding: 0;
+  background: $pageBg;
+  color: $typography;
+  overflow-x: hidden;
+  white-space: normal;
+}
+
+img,
+iframe {
+  max-width: 100%;
+  vertical-align: middle;
+  border: 0;
+}
+
+//layout
+@include generateAxis(p, padding);
+@include generateAxis(m, margin);

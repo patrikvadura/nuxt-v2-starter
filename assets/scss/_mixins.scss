@@ -1,0 +1,64 @@
+//basic
+@mixin fontSize($min, $max) {
+  font-size: unquote("clamp(#{$min} * 1rem, calc(#{$min} * 1rem + (#{$max} - #{$min}) * #{$calcWidth}), #{$max} * 1rem)");
+}
+
+@mixin shadow($color, $intensity) {
+  box-shadow: .15rem .15rem .25rem 0 rgba($color, $intensity);
+}
+
+//flex
+@mixin flex($direction, $justify, $align) {
+  display: flex;
+  @if $direction {
+    flex-direction: $direction;
+  }
+  @if $justify {
+    justify-content: $justify;
+  }
+  @if $align {
+    align-items: $align;
+  }
+}
+
+//generate
+@mixin generate($prefix, $property) {
+  $sizes: [0, .25, .5, 1, 1.5, 3];
+  $spacing: 1rem;
+
+  @for $i from 1 through length($sizes) {
+    $size: nth($sizes, $i);
+
+    .#{$prefix}-#{$i - 1} {
+      #{$property}: $spacing * $size;
+    }
+  }
+}
+
+@mixin generateAxis($prefix, $property) {
+  $sizes: [0, .25, .5, 1, 1.5, 3];
+  $spacing: 1rem;
+
+  @for $i from 1 through length($sizes) {
+    $size: nth($sizes, $i);
+
+    .#{$prefix}l-#{$i - 1} {
+      #{$property}-left: $spacing * $size;
+    }
+    .#{$prefix}t-#{$i - 1} {
+      #{$property}-top: $spacing * $size;
+    }
+    .#{$prefix}r-#{$i - 1} {
+      #{$property}-right: $spacing * $size;
+    }
+    .#{$prefix}b-#{$i - 1} {
+      #{$property}-bottom: $spacing * $size;
+    }
+    .#{$prefix}x-#{$i - 1} {
+      #{$property}: 0 $spacing * $size;
+    }
+    .#{$prefix}y-#{$i - 1} {
+      #{$property}: $spacing * $size 0;
+    }
+  }
+}

@@ -1,0 +1,46 @@
+//layout
+$spacer: .5rem;
+
+$wrapS: 56.25rem; //900px
+$wrapM: 75rem;    //1200px
+$wrapL: 100rem;   //1600px
+$wrap: $wrapL;
+$calcWidth: calc((100vw - 30rem) / (75 - 30));
+
+//typography
+$fontFamily: "Brandon Grotesque", helvetica, sans-serif;
+
+//font-sizes
+
+//font-weight
+$fontWeightRegular: normal;
+$fontWeightLight: 300;
+$fontWeightMedium: 500;
+$fontWeightBold: bold;
+$fontWeightBlack: 900;
+
+//line-height
+$lineHeightBase: $spacer * 3;
+$lineHeightSmall: $lineHeightBase * .75;
+$lineHeightLarge: $lineHeightBase * 1.25;
+$lineHeightExtraLarge: $lineHeightBase * 1.5;
+
+//colors
+$primary: #00dc82;
+$secondary: #4f4f4f;
+$black: #000;
+$white: #fff;
+$light: #989898;
+$typography: $secondary;
+$pageBg: $white;
+
+$primaryHover: #09a867;
+$secondaryHover: #363636;
+$blackHover: $white;
+$whiteHover: $black;
+$lightHover: $typography;
+$typographyHover: $black;
+
+//specialStates
+
+@import 'mixins';
