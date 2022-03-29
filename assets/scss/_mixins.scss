@@ -12,12 +12,25 @@
   display: flex;
   @if $direction {
     flex-direction: $direction;
-  }
-  @if $justify {
+  } @else if $justify {
     justify-content: $justify;
-  }
-  @if $align {
+  } @else if $align {
     align-items: $align;
+  }
+}
+
+//mediaQueries
+@mixin media-queries($size) {
+  @if $size == phone {
+    @media (max-width: 599px) { @content; }
+  } @else if $size == tablet-portrait {
+    @media (min-width: 600px) { @content; }
+  } @else if $size == tablet-landscape {
+    @media (min-width: $wrapS) { @content; }
+  } @else if $size == desktop {
+    @media (min-width: $wrapM) { @content; }
+  } @else if $size == large-desktop {
+    @media (min-width: $wrapL) { @content; }
   }
 }
 

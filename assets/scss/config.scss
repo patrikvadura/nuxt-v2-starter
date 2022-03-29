@@ -29,6 +29,7 @@ $lineHeightExtraLarge: $lineHeightBase * 1.5;
 $primary: #00dc82;
 $secondary: #4f4f4f;
 $black: #000;
+$gray: #d9d9d9;
 $white: #fff;
 $light: #989898;
 $typography: $secondary;
@@ -37,10 +38,9 @@ $pageBg: $white;
 $primaryHover: #09a867;
 $secondaryHover: #363636;
 $blackHover: $white;
+$grayHover: #bdbdbd;
 $whiteHover: $black;
-$lightHover: $typography;
+$lightHover: #4f4f4f;
 $typographyHover: $black;
-
-//specialStates
 
 @import 'mixins';

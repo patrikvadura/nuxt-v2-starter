@@ -1,11 +1,7 @@
 <template>
   <div class="nuxtStarter">
-    <nuxt-link
-      class="nuxtStarterLogo"
-      to="/"
-      target="_blank"
-    >
-      <NuxtLogo />
+    <nuxt-link class="nuxtStarterLogo" to="/">
+      <BaseLogo />
     </nuxt-link>
 
     <div class="pt-5">
@@ -14,19 +10,19 @@
       </h2>
 
       <p>
-        I recommend you take a look at the <a href="https://nuxtjs.org" target="_blank">Nuxt documentation</a>, whether you are new or have previous experience with the framework.
+        I recommend you take a look at the <a href="https://nuxtjs.org" class="link" target="_blank">Nuxt documentation</a>, whether you are new or have previous experience with the framework.
       </p>
+
+      <BaseButton href="/" medium>
+        <BaseIcon />
+        Button
+      </BaseButton>
     </div>
   </div>
 </template>
 
 <script>
-import NuxtLogo from '~/components/NuxtLogo.vue'
-
 export default {
-  components: {
-    NuxtLogo
-  }
 }
 </script>
 
@@ -36,10 +32,14 @@ export default {
 
   &Logo {
     @include flex ($direction: null, $justify: center, $align: center);
+
+    ::v-deep svg {
+      width: 10rem;
+    }
   }
 
   h2,
-  a {
+  .link {
     color: $primary;
   }
 }
