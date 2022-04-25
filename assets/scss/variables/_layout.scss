@@ -1,0 +1,66 @@
+//padding, margin
+@include generateAxis(p, padding);
+@include generateAxis(m, margin);
+
+//wrap
+@mixin wrapConfig {
+  padding: 0;
+  margin: 0 auto;
+  width: 100%;
+  @content;
+}
+
+.wrap {
+  @include wrapConfig {
+    max-width: $wrap;
+  }
+
+  &S {
+    @include wrapConfig {
+      max-width: $wrapS;
+    }
+  }
+}
+
+//grid
+@mixin gridConfig($min, $gapCol, $gapRow) {
+  display: grid;
+  width: 100%;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, min(100%, #{$min}rem)), 1fr));
+  grid-column-gap: #{$gapCol}rem;
+  row-gap: #{$gapRow}rem;
+}
+
+.grid {
+  &-2 { @include gridConfig(16, 2, 2); }
+  &-3 { @include gridConfig(14, 2, 2); }
+  &-4 { @include gridConfig(12, 2, 2); }
+  &-5 { @include gridConfig(8, 2, 2); }
+  &-6 { @include gridConfig(6, 2, 2); }
+}
+
+//row
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+}
+
+//columns
+@mixin columnConfig() {
+  $sizes: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+  $spacing: 10%;
+  $gap: 2rem;
+
+  @for $i from 1 through length($sizes) {
+    $size: nth($sizes, $i);
+
+    &-#{$i} {
+      width: calc((#{$spacing} * #{$size}) - #{$gap});
+    }
+  }
+}
+
+.col {
+  @include columnConfig();
+}
