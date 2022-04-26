@@ -1,10 +1,11 @@
 <template>
   <header
+    id="header"
     class="header"
-    :class="'header-' + variant"
+    :class="customClass"
   >
     <div class="wrap">
-      <nuxt-link to="/" class="headerLogo">
+      <nuxt-link to="/">
         <BaseLogo />
       </nuxt-link>
 
@@ -31,7 +32,7 @@
 <script>
 export default {
   props: {
-    variant: { type: String, default: '01' }
+    customClass: { type: String, default: 'customClass' }
   },
 
   data () {
@@ -39,9 +40,24 @@ export default {
       items: [
         { title: 'Dokumentace', href: 'https://nuxtjs.org/' },
         { title: 'GitHub', href: 'https://github.com/nuxt' },
+        { title: 'Nuxt', href: 'https://nuxtjs.org/docs/get-started/installation' },
         { title: 'Sass', href: 'https://sass-lang.com/documentation' },
         { title: 'Icons', href: 'https://iconscout.com/unicons/explore/line' }
       ]
+    }
+  },
+
+  mounted () {
+    window.onscroll = function () {
+      scrollFunction()
+    }
+
+    function scrollFunction () {
+      if (document.body.scrollTop > 50 || document.documentElement.scrollTop > 50) {
+        document.getElementById('header').classList.add('headerScroll')
+      } else {
+        document.getElementById('header').classList.remove('headerScroll')
+      }
     }
   }
 }
@@ -49,57 +65,80 @@ export default {
 
 <style lang="scss" scoped>
 .header {
-  @include flex($direction:column, $justify:center, $align:center);
-  @include clamp($property:height, $axis:null, $min:4, $max:6);
+  @include flex($direction: column, $justify: flex-start, $align: center);
+  @include clamp($property: height, $axis: null, $min: 4, $max: 6);
 
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
+  margin: 0;
+  padding: 0;
+  background: $headerBackgroundColor;
+  text-transform: $headerLinkTransform;
   z-index: 10;
+  transition: all .3s ease-in-out;
+
+  @if $headerShadow == true {
+    @include shadow($black, .1);
+  }
 
   .wrap {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
+    @include flex ($direction: row, $justify: space-between, $align: center);
+
+    flex-wrap: wrap;
+    height: 100%;
+  }
+
+  &Scroll {
+    @include clamp($property: height, $axis: null, $min: 4, $max: 4);
+
+    ::v-deep .logo svg {
+      @include clamp($property: height, $axis: null, $min: 2, $max: 2);
+    }
   }
 
   .navigation {
     @include flex ($direction: row, $justify: center, $align: flex-start);
 
-    max-height: none;
+    margin: 0;
+    padding: 0 1rem;
     list-style: none;
     overflow: hidden;
-    transition: max-height .2s ease-out;
+    transition: all .3s ease-in-out;
 
     @include media-queries(xs) {
-      flex-direction: column;
+      @include flex ($direction: column, $justify: flex-start, $align: flex-start);
+
+      display: none;
       width: 100%;
-      height: 100%;
-      max-height: 0;
+      background: $headerMobileNavBackgroundColor;
+
+      @if $headerShadow == true {
+        @include shadow($black, .1);
+      }
     }
 
     li a {
       display: block;
       padding: .5rem 1rem;
+      font-size: $headerLinkSize;
+      font-weight: $headerLinkWeight;
+      color: $headerLinkColor;
       text-decoration: none;
+      border-top: $headerLinkBorderSize solid $headerLinkBorderColor;
+      transition: all .6s ease-in-out;
+
+      &:hover {
+        border-top: $headerLinkBorderSize solid $headerLinkBorderColorHover;
+      }
 
       @include media-queries(xs) {
         padding: 1rem;
       }
-
-      &:first-of-type {
-        @include media-queries(xs) {
-          margin-top: 1rem;
-        }
-      }
     }
 
     &Icon {
-      position: relative;
-      display: inline-block;
-      float: right;
       padding: $spacer * 3 $spacer * 2;
       cursor: pointer;
       user-select: none;
@@ -111,14 +150,14 @@ export default {
       .navIcon {
         position: relative;
         display: block;
-        background: $secondary;
+        background: $headerMobileNavIconColor;
         width: 1.5rem;
         height: 1px;
-        transition: background .2s ease-out;
+        transition: all .2s ease-out;
 
         &::before,
         &::after {
-          background: $black;
+          background: $headerMobileNavIconColor;
           content: "";
           display: block;
           width: 100%;
@@ -143,7 +182,9 @@ export default {
 
     &:checked {
       ~ .navigation {
-        max-height: 100vh;
+        margin-top: 2rem;
+        padding: 1rem;
+        display: inherit;
 
         &Icon {
           .navIcon {
@@ -170,60 +211,9 @@ export default {
       }
     }
   }
+}
 
-  //states
-  &-01 {
-    background: $white;
-    text-transform: uppercase;
-
-    @include shadow($black, .1);
-
-    .topBar {
-      background: $primary;
-      color: $secondary;
-      font-size: 1rem;
-    }
-
-    ul {
-      background: $white;
-
-      li a {
-        font-size: 1rem;
-        font-weight: $fontWeightRegular;
-        color: $typography;
-        border-top: .25rem solid transparent;
-        transition: all .6s ease-in-out;
-
-        &:hover {
-          @include media-queries(sm) {
-            border-top: .25rem solid $primary;
-          }
-        }
-      }
-    }
-
-    .social {
-      display: none;
-    }
-
-    .navigation {
-      float: left;
-
-      @include media-queries(sm) {
-        float: right;
-      }
-
-      &Icon {
-        .navIcon {
-          background: $black;
-
-          &::before,
-          &::after {
-            background: $black;
-          }
-        }
-      }
-    }
-  }
+.customClass {
+  //empty
 }
 </style>

@@ -52,7 +52,7 @@ export default {
   display: inline-flex;
   flex-direction: row;
   align-items: center;
-  padding: .75rem 1rem;
+  padding: .5rem 1.5rem;
   font-size: .75rem;
   text-align: center;
   border: none;
@@ -89,6 +89,11 @@ export default {
 
   &-small {
     padding: .25rem .5rem;
+
+    ::v-deep i {
+      margin-right: .25rem;
+      font-size: 1rem !important;
+    }
   }
 
   // color variations

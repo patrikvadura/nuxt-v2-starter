@@ -23,7 +23,7 @@ $lineHeightSmall: $lineHeightBase * .75;
 $lineHeightLarge: $lineHeightBase * 1.25;
 $lineHeightExtraLarge: $lineHeightBase * 1.5;
 
-//colors
+//colors - default
 $primary: #00dc82;
 $secondary: #4f4f4f;
 $black: #000;
@@ -32,7 +32,7 @@ $white: #fff;
 $light: #989898;
 $typography: $secondary;
 $pageBg: $white;
-
+//colors - hover
 $primaryHover: #09a867;
 $secondaryHover: #363636;
 $blackHover: $white;
@@ -40,6 +40,20 @@ $grayHover: #bdbdbd;
 $whiteHover: $black;
 $lightHover: #4f4f4f;
 $typographyHover: $black;
+
+//header - default
+$headerBackgroundColor: $white;
+$headerShadow: true;
+$headerLinkColor: $typography;
+$headerLinkSize: 1rem;
+$headerLinkWeight: $fontWeightRegular;
+$headerLinkTransform: uppercase;
+$headerLinkBorderSize: .25rem;
+$headerLinkBorderColor: transparent;
+$headerLinkBorderColorHover: $primary;
+//header - mobile navigation
+$headerMobileNavBackgroundColor: $white;
+$headerMobileNavIconColor: $secondary;
 
 @import 'mixins';
 @import 'typography';

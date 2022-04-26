@@ -32,15 +32,16 @@ export default {
 
 <style lang="scss" scoped>
 .logo {
-  @include clamp($property:height, $axis:null, $min:4, $max:6);
-
   display: flex;
+  flex-direction: row;
   justify-content: flex-start;
   align-items: center;
-  float: left;
+  transition: all .3s ease-in-out;
 
   svg {
-    @include clamp($property:height, $axis:null, $min:2, $max:3);
+    @include clamp($property: height, $axis: null, $min: 2, $max: 2.5);
+
+    transition: all .3s ease-in-out;
   }
 
   &-negative {

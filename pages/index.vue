@@ -10,15 +10,25 @@
           I recommend you take a look at the <a href="https://nuxtjs.org" class="link" target="_blank">Nuxt documentation</a>, whether you are new or have previous experience with the framework.
         </p>
 
-        <BaseButton href="/" white medium>
-          <BaseIcon />
-          Button
-        </BaseButton>
+        <h4>
+          Design elements / layouts
+        </h4>
+
+        <ul class="navigation">
+          <li
+            v-for="item in items"
+            :key="item.id"
+          >
+            <a :href="item.href">
+              {{ item.title }}
+            </a>
+          </li>
+        </ul>
       </div>
     </div>
 
     <div class="wrap">
-      <h4 class="mt-5">
+      <h4 id="typography" class="mt-5">
         Typography
       </h4>
 
@@ -31,7 +41,153 @@
 
       <hr class="mt-5">
 
-      <h4 class="mt-5">
+      <h4 id="buttons" class="mt-5">
+        Buttons
+      </h4>
+
+      <h5>Size - small</h5>
+
+      <div class="row">
+        <BaseButton href="/" small>
+          Button
+        </BaseButton>
+
+        <BaseButton href="/" secondary small>
+          Button
+        </BaseButton>
+
+        <BaseButton href="/" gray small>
+          Button
+        </BaseButton>
+
+        <BaseButton href="/" plain small>
+          Button
+        </BaseButton>
+      </div>
+
+      <div class="row mt-3">
+        <BaseButton href="/" small>
+          <BaseIcon />
+          Button
+        </BaseButton>
+
+        <BaseButton href="/" secondary small>
+          <BaseIcon />
+          Button
+        </BaseButton>
+
+        <BaseButton href="/" gray small>
+          <BaseIcon />
+          Button
+        </BaseButton>
+
+        <BaseButton href="/" plain small>
+          <BaseIcon />
+          Button
+        </BaseButton>
+      </div>
+
+      <h5>Size - normal</h5>
+
+      <div class="row">
+        <BaseButton href="/">
+          Button
+        </BaseButton>
+
+        <BaseButton href="/" secondary>
+          Button
+        </BaseButton>
+
+        <BaseButton href="/" gray>
+          Button
+        </BaseButton>
+
+        <BaseButton href="/" plain>
+          Button
+        </BaseButton>
+      </div>
+
+      <div class="row mt-3">
+        <BaseButton href="/">
+          <BaseIcon />
+          Button
+        </BaseButton>
+
+        <BaseButton href="/" secondary>
+          <BaseIcon />
+          Button
+        </BaseButton>
+
+        <BaseButton href="/" gray>
+          <BaseIcon />
+          Button
+        </BaseButton>
+
+        <BaseButton href="/" plain>
+          <BaseIcon />
+          Button
+        </BaseButton>
+      </div>
+
+      <h5>Size - medium</h5>
+
+      <div class="row">
+        <BaseButton href="/" medium>
+          Button
+        </BaseButton>
+
+        <BaseButton href="/" secondary medium>
+          Button
+        </BaseButton>
+
+        <BaseButton href="/" gray medium>
+          Button
+        </BaseButton>
+
+        <BaseButton href="/" plain medium>
+          Button
+        </BaseButton>
+      </div>
+
+      <div class="row mt-3">
+        <BaseButton href="/" medium>
+          <BaseIcon />
+          Button
+        </BaseButton>
+
+        <BaseButton href="/" secondary medium>
+          <BaseIcon />
+          Button
+        </BaseButton>
+
+        <BaseButton href="/" gray medium>
+          <BaseIcon />
+          Button
+        </BaseButton>
+
+        <BaseButton href="/" plain medium>
+          <BaseIcon />
+          Button
+        </BaseButton>
+      </div>
+
+      <h5>Size - medium</h5>
+
+      <div class="row">
+        <BaseButton href="/" small wide>
+          <BaseIcon />
+          Button
+        </BaseButton>
+
+        <BaseButton href="/" secondary wide>
+          <BaseIcon />
+          Button
+        </BaseButton>
+      </div>
+
+      <hr class="mt-5">
+
+      <h4 id="grid" class="mt-5">
         Grid examples
       </h4>
 
@@ -126,7 +282,7 @@
         </div>
       </div>
 
-      <h4 class="mt-5">
+      <h4 id="columns" class="mt-5">
         Columns
       </h4>
 
@@ -202,6 +358,16 @@
 
 <script>
 export default {
+  data () {
+    return {
+      items: [
+        { title: 'Typography', href: '#typography' },
+        { title: 'Buttons', href: '#buttons' },
+        { title: 'Grid', href: '#grid' },
+        { title: 'Columns & Rows', href: '#columns' }
+      ]
+    }
+  }
 }
 </script>
 
@@ -212,6 +378,18 @@ export default {
 
   h1,
   .link {
+    color: $white;
+  }
+}
+
+.navigation {
+  @include flex($direction: row, $justify: flex-start, $align: center);
+
+  padding: 0;
+  list-style: none;
+
+  li a {
+    padding-right: 1rem;
     color: $white;
   }
 }

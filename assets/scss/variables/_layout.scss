@@ -6,7 +6,6 @@
 
 //wrap
 @mixin wrapParameters {
-  flex-wrap: wrap;
   padding: 0 $spacer * 2;
   margin: 0 auto;
   width: 100%;
@@ -79,6 +78,10 @@
 
     &-#{$i} {
       width: calc((#{$spacing} * #{$size}) - #{$gap});
+
+      @include media-queries(xs) {
+        width: 100%;
+      }
     }
   }
 }

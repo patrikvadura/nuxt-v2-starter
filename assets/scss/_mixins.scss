@@ -19,9 +19,9 @@
   display: flex;
   @if $direction {
     flex-direction: $direction;
-  } @else if $justify {
+  } @if $justify {
     justify-content: $justify;
-  } @else if $align {
+  } @if $align {
     align-items: $align;
   }
 }
@@ -67,4 +67,9 @@
       }
     }
   }
+}
+
+//customCSS
+@mixin customClass($property, $parameter) {
+  #{$property}: $parameter;
 }
