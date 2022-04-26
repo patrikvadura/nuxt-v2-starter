@@ -1,29 +1,42 @@
-//padding, margin
-@include generateAxis(p, padding);
-@include generateAxis(m, margin);
+//margin
+@include config(m, margin, [0, .25, .5, 1, 1.5, 3], $spacer * 2);
+
+//padding
+@include config(p, padding, [0, .25, .5, 1, 1.5, 3], $spacer * 2);
 
 //wrap
-@mixin wrapConfig {
-  padding: 0;
+@mixin wrapParameters {
+  flex-wrap: wrap;
+  padding: 0 $spacer * 2;
   margin: 0 auto;
   width: 100%;
   @content;
 }
 
-.wrap {
-  @include wrapConfig {
-    max-width: $wrap;
-  }
+@mixin wrapConfig() {
+  $sizes: [S, M, L];
 
-  &S {
-    @include wrapConfig {
-      max-width: $wrapS;
+  .wrap {
+    @include wrapParameters {
+      max-width: $wrap;
+    }
+
+    @for $i from 1 through length($sizes) {
+      $size: nth($sizes, $i);
+
+      &#{$i} {
+        @include wrapParameters {
+          max-width: $wrap#{$i};
+        }
+      }
     }
   }
 }
 
+@include wrapConfig();
+
 //grid
-@mixin gridConfig($min, $gapCol, $gapRow) {
+@mixin gridParameters($min, $gapCol, $gapRow) {
   display: grid;
   width: 100%;
   grid-template-columns: repeat(auto-fit, minmax(min(100%, min(100%, #{$min}rem)), 1fr));
@@ -31,26 +44,35 @@
   row-gap: #{$gapRow}rem;
 }
 
-.grid {
-  &-2 { @include gridConfig(16, 2, 2); }
-  &-3 { @include gridConfig(14, 2, 2); }
-  &-4 { @include gridConfig(12, 2, 2); }
-  &-5 { @include gridConfig(8, 2, 2); }
-  &-6 { @include gridConfig(6, 2, 2); }
+@mixin columnConfig() {
+  $sizes: [1, 2, 3, 4, 5, 6];
+  $spacing: 1.5;
+
+  .grid {
+    @for $i from 1 through length($sizes) {
+      $size: nth($sizes, $i);
+
+      &-#{$i} {
+        @include gridParameters(((20 - $i * $spacing) - ($i - $spacing)), 2, 2);
+      }
+    }
+  }
 }
+
+@include columnConfig();
 
 //row
 .row {
   display: flex;
   flex-wrap: wrap;
-  gap: 2rem;
+  gap: $spacer * 4;
 }
 
 //columns
 @mixin columnConfig() {
   $sizes: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
   $spacing: 10%;
-  $gap: 2rem;
+  $gap: $spacer * 4;
 
   @for $i from 1 through length($sizes) {
     $size: nth($sizes, $i);

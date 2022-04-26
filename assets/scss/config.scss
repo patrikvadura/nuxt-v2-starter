@@ -4,7 +4,7 @@ $spacer: .5rem;
 $wrapS: 56.25rem; //900px
 $wrapM: 75rem;    //1200px
 $wrapL: 100rem;   //1600px
-$wrap: $wrapL;
+$wrap: $wrapM;
 $calcWidth: calc((100vw - 30rem) / (75 - 30));
 
 //typography

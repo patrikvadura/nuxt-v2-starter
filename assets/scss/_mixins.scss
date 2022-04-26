@@ -42,43 +42,29 @@
 }
 
 //generate
-@mixin generate($prefix, $property) {
-  $sizes: [0, .25, .5, 1, 1.5, 3];
-  $spacing: 1rem;
+@mixin config($prefix, $property, $sizes, $spacing) {
+  .#{$prefix} {
+    @for $i from 1 through length($sizes) {
+      $size: nth($sizes, $i);
 
-  @for $i from 1 through length($sizes) {
-    $size: nth($sizes, $i);
-
-    .#{$prefix}-#{$i - 1} {
-      #{$property}: $spacing * $size;
-    }
-  }
-}
-
-@mixin generateAxis($prefix, $property) {
-  $sizes: [0, .25, .5, 1, 1.5, 3];
-  $spacing: 1rem;
-
-  @for $i from 1 through length($sizes) {
-    $size: nth($sizes, $i);
-
-    .#{$prefix}l-#{$i - 1} {
-      #{$property}-left: $spacing * $size;
-    }
-    .#{$prefix}t-#{$i - 1} {
-      #{$property}-top: $spacing * $size;
-    }
-    .#{$prefix}r-#{$i - 1} {
-      #{$property}-right: $spacing * $size;
-    }
-    .#{$prefix}b-#{$i - 1} {
-      #{$property}-bottom: $spacing * $size;
-    }
-    .#{$prefix}x-#{$i - 1} {
-      #{$property}: 0 $spacing * $size;
-    }
-    .#{$prefix}y-#{$i - 1} {
-      #{$property}: $spacing * $size 0;
+      &l-#{$i - 1} {
+        #{$property}-left: $spacing * $size;
+      }
+      &t-#{$i - 1} {
+        #{$property}-top: $spacing * $size;
+      }
+      &r-#{$i - 1} {
+        #{$property}-right: $spacing * $size;
+      }
+      &b-#{$i - 1} {
+        #{$property}-bottom: $spacing * $size;
+      }
+      &x-#{$i - 1} {
+        #{$property}: 0 $spacing * $size;
+      }
+      &y-#{$i - 1} {
+        #{$property}: $spacing * $size 0;
+      }
     }
   }
 }

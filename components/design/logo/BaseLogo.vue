@@ -32,14 +32,27 @@ export default {
 
 <style lang="scss" scoped>
 .logo {
-  svg { width: 100%; }
+  @include clamp($property:height, $axis:null, $min:4, $max:6);
+
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  float: left;
+
+  svg {
+    @include clamp($property:height, $axis:null, $min:2, $max:3);
+  }
 
   &-negative {
-    svg { fill: $white; }
+    svg {
+      fill: $white;
+    }
   }
 
   &-monochrome {
-    svg { fill: $black; }
+    svg {
+      fill: $black;
+    }
   }
 }
 </style>

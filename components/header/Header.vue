@@ -50,6 +50,7 @@ export default {
 <style lang="scss" scoped>
 .header {
   @include flex($direction:column, $justify:center, $align:center);
+  @include clamp($property:height, $axis:null, $min:4, $max:6);
 
   position: fixed;
   top: 0;
@@ -57,49 +58,50 @@ export default {
   width: 100%;
   z-index: 10;
 
-  .topBar {
-    padding: $spacer;
-    text-align: center;
-    width: 100%;
-  }
-
   .wrap {
-    @include clamp($property:padding, $axis:null, $min:1, $max:1.5);
-
-    width: 100%;
-  }
-
-  ul {
-    margin: 0;
-    padding: 0;
-    list-style: none;
-    overflow: hidden;
-
-    li a {
-      display: block;
-      padding: 1rem;
-      text-decoration: none;
-    }
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
   }
 
   .navigation {
-    clear: both;
-    float: left;
-    max-height: 0;
+    @include flex ($direction: row, $justify: center, $align: flex-start);
+
+    max-height: none;
+    list-style: none;
+    overflow: hidden;
     transition: max-height .2s ease-out;
 
-    @include media-queries(sm) {
-      clear: none;
-      float: right;
-      max-height: none;
+    @include media-queries(xs) {
+      flex-direction: column;
+      width: 100%;
+      height: 100%;
+      max-height: 0;
+    }
+
+    li a {
+      display: block;
+      padding: .5rem 1rem;
+      text-decoration: none;
+
+      @include media-queries(xs) {
+        padding: 1rem;
+      }
+
+      &:first-of-type {
+        @include media-queries(xs) {
+          margin-top: 1rem;
+        }
+      }
     }
 
     &Icon {
-      cursor: pointer;
+      position: relative;
       display: inline-block;
       float: right;
       padding: $spacer * 3 $spacer * 2;
-      position: relative;
+      cursor: pointer;
       user-select: none;
 
       @include media-queries(sm) {
@@ -107,12 +109,12 @@ export default {
       }
 
       .navIcon {
-        background: $black;
-        display: block;
-        height: .15rem;
         position: relative;
+        display: block;
+        background: $secondary;
+        width: 1.5rem;
+        height: 1px;
         transition: background .2s ease-out;
-        width: 1rem;
 
         &::before,
         &::after {
@@ -126,11 +128,11 @@ export default {
         }
 
         &::before {
-          top: .25rem;
+          top: .5rem;
         }
 
         &::after {
-          top: -.25rem;
+          top: -.5rem;
         }
       }
     }
@@ -141,22 +143,19 @@ export default {
 
     &:checked {
       ~ .navigation {
-        margin-top: 2rem;
         max-height: 100vh;
 
-        @include media-queries(sm) {
-          margin-top: inherit;
-        }
+        &Icon {
+          .navIcon {
+            background: transparent;
 
-        .navIcon {
-          background: transparent;
+            &::before {
+              transform: translate(0, -.5rem) rotate(-45deg);
+            }
 
-          &::before {
-            transform: rotate(-45deg);
-          }
-
-          &::after {
-            transform: rotate(45deg);
+            &::after {
+              transform: translate(0, .5rem)rotate(45deg);
+            }
           }
         }
       }
@@ -186,29 +185,16 @@ export default {
     }
 
     ul {
-      @include flex ($direction: column, $justify: center, $align: flex-start);
-
       background: $white;
-
-      @include media-queries(sm) {
-        flex-direction: row;
-      }
 
       li a {
         font-size: 1rem;
         font-weight: $fontWeightRegular;
         color: $typography;
-        border-top: .25rem solid $secondary;
-        opacity: .5;
+        border-top: .25rem solid transparent;
         transition: all .6s ease-in-out;
 
-        @include media-queries(sm) {
-          border-top: .25rem solid transparent;
-        }
-
         &:hover {
-          opacity: 1;
-
           @include media-queries(sm) {
             border-top: .25rem solid $primary;
           }
@@ -218,16 +204,6 @@ export default {
 
     .social {
       display: none;
-    }
-
-    .headerLogo {
-      position: absolute;
-      height: 3rem;
-      // transform: translateY(unquote("clamp(#{1} * 1rem, calc(#{1} * 1rem + (#{3} - #{1}) * #{$calcWidth}), #{3} * 1rem)"));
-
-      ::v-deep svg {
-        height: 3rem;
-      }
     }
 
     .navigation {
@@ -247,10 +223,6 @@ export default {
           }
         }
       }
-    }
-
-    .navigationBtn:checked ~ .navigation {
-      margin-top: 4rem;
     }
   }
 }

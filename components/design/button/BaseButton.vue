@@ -18,6 +18,7 @@ export default {
     // color variations
     primary: { type: Boolean, default: true },
     secondary: { type: Boolean, default: false },
+    white: { type: Boolean, default: false },
     gray: { type: Boolean, default: false },
     plain: { type: Boolean, default: false },
 
@@ -32,6 +33,7 @@ export default {
         // color variations
         'baseButton-primary': this.primary,
         'baseButton-secondary': this.secondary,
+        'baseButton-white': this.white,
         'baseButton-gray': this.gray,
         'baseButton-plain': this.plain,
 
@@ -114,6 +116,10 @@ export default {
 
   &-secondary {
     @include colorState ($secondary, $secondaryHover, $white, $white);
+  }
+
+  &-white {
+    @include colorState ($white, $primaryHover, $primary, $primary);
   }
 
   &-gray {

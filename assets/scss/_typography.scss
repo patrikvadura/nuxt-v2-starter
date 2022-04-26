@@ -2,6 +2,8 @@ h1 {
   @include clamp($property:font-size, $axis: null, $min:2, $max:3);
 
   font-weight: $fontWeightLight;
+  line-height: $lineHeightExtraLarge;
+  text-transform: uppercase;
 
   span {
     font-weight: $fontWeightBold;
@@ -12,7 +14,7 @@ h2 {
   @include clamp($property:font-size, $axis: null, $min:2, $max:3);
 
   font-weight: $fontWeightLight;
-  text-transform: uppercase;
+  line-height: $lineHeightLarge;
 
   span {
     font-weight: $fontWeightBold;
@@ -23,6 +25,7 @@ h3 {
   @include clamp($property:font-size, $axis: null, $min:1.5, $max:2);
 
   font-weight: $fontWeightBold;
+  line-height: $lineHeightBase;
   text-transform: uppercase;
 }
 
@@ -30,6 +33,7 @@ h4 {
   @include clamp($property:font-size, $axis: null, $min:1, $max:1.25);
 
   font-weight: $fontWeightBold;
+  line-height: $lineHeightBase;
   text-transform: uppercase;
 }
 
@@ -37,6 +41,7 @@ p {
   @include clamp($property:font-size, $axis: null, $min:1, $max:1.1);
 
   font-weight: $fontWeightLight;
+  line-height: $lineHeightBase;
 
   span {
     font-weight: $fontWeightBold;

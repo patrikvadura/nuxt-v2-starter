@@ -3,7 +3,9 @@
     <Header
       :variant="'01'"
     />
-    <Nuxt />
+    <div class="body">
+      <Nuxt />
+    </div>
   </div>
 </template>
 
@@ -17,3 +19,9 @@ export default {
   }
 }
 </script>
+
+<style lang="scss" scoped>
+.body {
+  @include clamp($property:margin-top, $axis:null, $min:4, $max:6);
+}
+</style>
