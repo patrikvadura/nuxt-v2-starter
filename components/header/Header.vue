@@ -107,7 +107,7 @@ export default {
     overflow: hidden;
     transition: all .3s ease-in-out;
 
-    @include media-queries(xs) {
+    @include media-queries-down(sm) {
       @include flex ($direction: column, $justify: flex-start, $align: flex-start);
 
       display: none;
@@ -133,17 +133,17 @@ export default {
         border-top: $headerLinkBorderSize solid $headerLinkBorderColorHover;
       }
 
-      @include media-queries(xs) {
+      @include media-queries-down(sm) {
         padding: 1rem;
       }
     }
 
     &Icon {
-      padding: $spacer * 3 $spacer * 2;
+      padding: $spacer * 1.5 $spacer;
       cursor: pointer;
       user-select: none;
 
-      @include media-queries(sm) {
+      @include media-queries-up(sm) {
         display: none;
       }
 

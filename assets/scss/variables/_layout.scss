@@ -1,38 +1,45 @@
-//margin
-@include config(m, margin, [0, .25, .5, 1, 1.5, 3], $spacer * 2);
-
-//padding
-@include config(p, padding, [0, .25, .5, 1, 1.5, 3], $spacer * 2);
-
-//wrap
-@mixin wrapParameters {
-  padding: 0 $spacer * 2;
-  margin: 0 auto;
-  width: 100%;
-  @content;
-}
-
-@mixin wrapConfig() {
-  $sizes: [S, M, L];
-
-  .wrap {
-    @include wrapParameters {
-      max-width: $wrap;
-    }
-
-    @for $i from 1 through length($sizes) {
-      $size: nth($sizes, $i);
-
-      &#{$i} {
-        @include wrapParameters {
-          max-width: $wrap#{$i};
+// Margin, padding
+@each $property in $spacingProperties {
+  .#{str-slice($property, 1, 1)} {
+    @each $spacer, $value in $spacers {
+      @each $side in $sides {
+        &#{str-slice($side, 1, 1)}-#{$spacer} {
+          #{$property}-#{$side}: $value;
+        }
+      }
+      @each $orientation in $orientations {
+        &#{$orientation}-#{$spacer} {
+          @if $orientation == "x" {
+            #{$property}: 0 $value;
+          } @else {
+            #{$property}: $value 0;
+          }
         }
       }
     }
   }
 }
 
-@include wrapConfig();
+// Width
+@each $prop, $abbrev in (width: w, height: h) {
+  @each $size, $length in $sizes {
+    .#{$abbrev}-#{$size} { #{$prop}: $length !important; }
+  }
+}
+
+//wrap
+@mixin wrapParameters {
+  padding: 0 $spacer;
+  margin: 0 auto;
+  width: 100%;
+  @content;
+}
+
+.wrap {
+  @include wrapParameters {
+    max-width: $wrap;
+  }
+}
 
 //grid
 @mixin gridParameters($min, $gapCol, $gapRow) {
@@ -59,33 +66,3 @@
 }
 
 @include columnConfig();
-
-//row
-.row {
-  display: flex;
-  flex-wrap: wrap;
-  gap: $spacer * 4;
-}
-
-//columns
-@mixin columnConfig() {
-  $sizes: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
-  $spacing: 10%;
-  $gap: $spacer * 4;
-
-  @for $i from 1 through length($sizes) {
-    $size: nth($sizes, $i);
-
-    &-#{$i} {
-      width: calc((#{$spacing} * #{$size}) - #{$gap});
-
-      @include media-queries(xs) {
-        width: 100%;
-      }
-    }
-  }
-}
-
-.col {
-  @include columnConfig();
-}

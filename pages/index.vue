@@ -28,7 +28,7 @@
     </div>
 
     <div class="wrap">
-      <h4 id="typography" class="mt-5">
+      <h4 id="typography" class="mt-4">
         Typography
       </h4>
 
@@ -39,9 +39,9 @@
       <h5>H5 title</h5>
       <p>Paragraph</p>
 
-      <hr class="mt-5">
+      <hr class="mt-4">
 
-      <h4 id="buttons" class="mt-5">
+      <h4 id="buttons" class="mt-4">
         Buttons
       </h4>
 
@@ -60,12 +60,12 @@
           Button
         </BaseButton>
 
-        <BaseButton href="/" plain small>
+        <BaseButton href="/" white small>
           Button
         </BaseButton>
       </div>
 
-      <div class="row mt-3">
+      <div class="row mt-4">
         <BaseButton href="/" small>
           <BaseIcon />
           Button
@@ -81,7 +81,7 @@
           Button
         </BaseButton>
 
-        <BaseButton href="/" plain small>
+        <BaseButton href="/" white small>
           <BaseIcon />
           Button
         </BaseButton>
@@ -102,12 +102,12 @@
           Button
         </BaseButton>
 
-        <BaseButton href="/" plain>
+        <BaseButton href="/" white>
           Button
         </BaseButton>
       </div>
 
-      <div class="row mt-3">
+      <div class="row mt-4">
         <BaseButton href="/">
           <BaseIcon />
           Button
@@ -123,7 +123,7 @@
           Button
         </BaseButton>
 
-        <BaseButton href="/" plain>
+        <BaseButton href="/" white>
           <BaseIcon />
           Button
         </BaseButton>
@@ -144,12 +144,12 @@
           Button
         </BaseButton>
 
-        <BaseButton href="/" plain medium>
+        <BaseButton href="/" white medium>
           Button
         </BaseButton>
       </div>
 
-      <div class="row mt-3">
+      <div class="row mt-4">
         <BaseButton href="/" medium>
           <BaseIcon />
           Button
@@ -165,7 +165,7 @@
           Button
         </BaseButton>
 
-        <BaseButton href="/" plain medium>
+        <BaseButton href="/" white medium>
           <BaseIcon />
           Button
         </BaseButton>
@@ -185,9 +185,9 @@
         </BaseButton>
       </div>
 
-      <hr class="mt-5">
+      <hr class="mt-4">
 
-      <h4 id="grid" class="mt-5">
+      <h4 id="grid" class="mt-4">
         Grid examples
       </h4>
 
@@ -197,7 +197,7 @@
         <div class="gridBox" />
       </div>
 
-      <h5 class="mt-5">
+      <h5 class="mt-4">
         2 columns grid
       </h5>
 
@@ -206,7 +206,7 @@
         <div class="gridBox" />
       </div>
 
-      <h5 class="mt-5">
+      <h5 class="mt-4">
         3 columns grid
       </h5>
 
@@ -216,7 +216,7 @@
         <div class="gridBox" />
       </div>
 
-      <h5 class="mt-5">
+      <h5 class="mt-4">
         4 columns grid
       </h5>
 
@@ -227,7 +227,7 @@
         <div class="gridBox" />
       </div>
 
-      <h5 class="mt-5">
+      <h5 class="mt-4">
         5 columns grid
       </h5>
 
@@ -239,7 +239,7 @@
         <div class="gridBox" />
       </div>
 
-      <h5 class="mt-5">
+      <h5 class="mt-4">
         6 columns grid
       </h5>
 
@@ -252,7 +252,7 @@
         <div class="gridBox" />
       </div>
 
-      <h5 class="mt-5">
+      <h5 class="mt-4">
         Combine columns grid - 2 : 1
       </h5>
 
@@ -265,7 +265,7 @@
         <div class="gridBox" />
       </div>
 
-      <h5 class="mt-5">
+      <h5 class="mt-4">
         Combine columns grid - 3 : 2
       </h5>
 
@@ -282,74 +282,100 @@
         </div>
       </div>
 
-      <h4 id="columns" class="mt-5">
+      <h4 id="columns" class="mt-4">
         Columns
       </h4>
 
       <h5>Column sizes</h5>
 
-      <div class="row">
-        <div class="col-10 gridBox">
-          100%
+      <div class="container">
+        <div class="row">
+          <div class="col-10 gridBox">
+            100%
+          </div>
+          <div class="col-9 gridBox">
+            90%
+          </div>
+          <div class="col-1 gridBox">
+            10%
+          </div>
+          <div class="col-8 gridBox">
+            80%
+          </div>
+          <div class="col-2 gridBox">
+            20%
+          </div>
+          <div class="col-7 gridBox">
+            70%
+          </div>
+          <div class="col-3 gridBox">
+            30%
+          </div>
+          <div class="col-6 gridBox">
+            60%
+          </div>
+          <div class="col-4 gridBox">
+            40%
+          </div>
+          <div class="col-10 col-md-5 gridBox">
+            50%
+          </div>
+          <div class="col-10 col-md-5 gridBox">
+            50%
+          </div>
         </div>
-        <div class="col-9 gridBox">
-          90%
-        </div>
-        <div class="col-1 gridBox">
-          10%
-        </div>
-        <div class="col-8 gridBox">
-          80%
-        </div>
-        <div class="col-2 gridBox">
-          20%
-        </div>
-        <div class="col-7 gridBox">
-          70%
-        </div>
-        <div class="col-3 gridBox">
-          30%
-        </div>
-        <div class="col-6 gridBox">
-          60%
-        </div>
-        <div class="col-4 gridBox">
-          40%
-        </div>
-        <div class="col-5 gridBox">
-          50%
-        </div>
-        <div class="col-5 gridBox">
-          50%
+      </div>
+
+      <h5>Row cols</h5>
+
+      <div class="container">
+        <div class="row-cols-3">
+          <div class="col gridBox">
+            auto
+          </div>
+          <div class="col gridBox">
+            auto
+          </div>
+          <div class="col gridBox">
+            auto
+          </div>
+          <div class="col gridBox">
+            auto
+          </div>
+          <div class="col gridBox">
+            auto
+          </div>
         </div>
       </div>
 
       <h5>Combine</h5>
 
-      <div class="row">
-        <div class="col-3 gridBox">
-          30%
-        </div>
-        <div class="col-3 gridBox">
-          30%
-        </div>
-        <div class="col-4 gridBox">
-          40%
-        </div>
-        <div class="col-2 gridBox">
-          20%
-        </div>
-        <div class="col-2 gridBox">
-          20%
-        </div>
-        <div class="col-2 gridBox">
-          20%
-        </div>
-        <div class="col-2 gridBox">
-          20%
-        </div>
-        <div class="col-2 gridBox">
-          20%
+      <div class="container">
+        <div class="row">
+          <div class="col-3 gridBox">
+            30%
+          </div>
+          <div class="col-3 gridBox">
+            30%
+          </div>
+          <div class="col-4 gridBox">
+            40%
+          </div>
+          <div class="col-2 gridBox">
+            20%
+          </div>
+          <div class="col-2 gridBox">
+            20%
+          </div>
+          <div class="col-2 gridBox">
+            20%
+          </div>
+          <div class="col-2 gridBox">
+            20%
+          </div>
+          <div class="col-2 gridBox">
+            20%
+          </div>
         </div>
       </div>
     </div>

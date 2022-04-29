@@ -20,7 +20,8 @@ export default {
     secondary: { type: Boolean, default: false },
     white: { type: Boolean, default: false },
     gray: { type: Boolean, default: false },
-    plain: { type: Boolean, default: false },
+    light: { type: Boolean, default: false },
+    dark: { type: Boolean, default: false },
 
     // sizing
     wide: { type: Boolean, default: false },
@@ -34,9 +35,10 @@ export default {
         'baseButton-primary': this.primary,
         'baseButton-secondary': this.secondary,
         'baseButton-white': this.white,
+        'baseButton-black': this.black,
         'baseButton-gray': this.gray,
-        'baseButton-plain': this.plain,
-
+        'baseButton-light': this.light,
+        'baseButton-dark': this.dark,
         // sizing
         'baseButton-wide': this.wide,
         'baseButton-small': this.small,
@@ -49,19 +51,25 @@ export default {
 
 <style lang="scss" scoped>
 .baseButton {
-  display: inline-flex;
-  flex-direction: row;
-  align-items: center;
+  @include flex($direction: row, $justify: null, $align: center);
+
   padding: .5rem 1.5rem;
-  font-size: .75rem;
   text-align: center;
-  border: none;
-  border-radius: .25rem;
+  font-size: $buttonTextSize;
+  font-weight: $buttonTextWeight;
+  text-decoration: $buttonTextDecoration;
+  border-radius: $buttonBorderRadius;
   cursor: pointer;
   transition: all 300ms ease-in-out;
 
   &::first-letter {
     text-transform: uppercase;
+  }
+
+  &.disabled,
+  &:disabled {
+    opacity: .5;
+    cursor: not-allowed;
   }
 
   // icon
@@ -77,12 +85,12 @@ export default {
   }
 
   &-medium {
-    display: flex;
-    justify-content: center;
-    width: 15rem;
-    font-size: 1rem;
+    @include flex($direction: null, $justify: center, $align: null);
 
-    @include media-queries(xs) {
+    min-width: 15rem;
+    font-size: $buttonTextSize * 1.25;
+
+    @include media-queries-down(sm) {
       width: 100%;
     }
   }
@@ -92,47 +100,38 @@ export default {
 
     ::v-deep i {
       margin-right: .25rem;
-      font-size: 1rem !important;
+      font-size: $buttonTextSize !important;
     }
   }
 
   // color variations
-  @mixin colorState ($background, $backgroundHover, $color, $colorHover) {
-    background: $background;
-    color: $color;
+  @mixin buttonVariant ($background) {
+    color: colorContrast($background);
 
-    &:hover {
-      background: $backgroundHover;
-      color: $colorHover;
+    @if $buttonOutlined {
+      border: .25rem solid $background;
+      background: transparent;
+
+      &:hover {
+        border: .25rem solid darken($background, 15%);
+      }
+    } @else {
+      background: $background;
+
+      &:hover {
+        background: darken($background, 15%);
+      }
     }
 
     ::v-deep i {
-      color: $color !important;
-
-      &:hover {
-        color: $colorHover !important;
-      }
+      color: colorContrast($background) !important;
     }
   }
 
-  &-primary {
-    @include colorState ($primary, $primaryHover, $white, $white);
-  }
-
-  &-secondary {
-    @include colorState ($secondary, $secondaryHover, $white, $white);
-  }
-
-  &-white {
-    @include colorState ($white, $primaryHover, $primary, $primary);
-  }
-
-  &-gray {
-    @include colorState ($gray, $grayHover, $typography, $typography);
-  }
-
-  &-plain {
-    @include colorState (transparent, transparent, $typography, $primaryHover);
+  @each $color, $value in $themeColors {
+    &-#{$color} {
+      @include buttonVariant($value);
+    }
   }
 }
 </style>

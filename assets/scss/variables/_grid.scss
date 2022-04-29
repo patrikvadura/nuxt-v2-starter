@@ -1,0 +1,89 @@
+/// GRID SYSTEM
+// Container
+.container,
+.container-fluid {
+  width: 100%;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+@each $breakpoint, $containerMaxWidth in $containerMaxWidths {
+  .container-#{$breakpoint} {
+    @extend .container-fluid;
+  }
+
+  @include media-queries-up($breakpoint, $gridBreakpoints) {
+    %responsive-container-#{$breakpoint} {
+      max-width: $containerMaxWidth;
+    }
+
+    @each $name, $width in $gridBreakpoints {
+      .container#{breakpoint-infix($name, $gridBreakpoints)} {
+        @extend %responsive-container-#{$breakpoint};
+      }
+
+      @if ($breakpoint == $name) {
+        $extend-breakpoint: false;
+      }
+    }
+  }
+}
+
+
+// Row
+.row {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.noGutters {
+  margin-right: 0;
+  margin-left: 0;
+
+  > .col,
+  > [class*="col-"] {
+    padding-right: 0;
+    padding-left: 0;
+  }
+}
+
+// Columns
+%column {
+  position: relative;
+  width: 100%;
+  padding-right: $gridGutterWidth * .5;
+  padding-left: $gridGutterWidth * .5;
+}
+
+@each $breakpoint in map-keys($gridBreakpoints) {
+  $infix: breakpoint-infix($breakpoint, $gridBreakpoints);
+
+  @if $gridColumns > 0 {
+    @for $i from 1 through $gridColumns {
+      .col#{$infix}-#{$i} {
+        @extend %column;
+      }
+    }
+  }
+
+  .col#{$infix} {
+    @extend %column;
+  }
+
+  @include media-queries-up($breakpoint, $gridBreakpoints) {
+    .col#{$infix} {
+      flex-basis: 0;
+      flex-grow: 1;
+      max-width: 100%;
+    }
+
+    @if $gridColumns > 0 {
+      @for $i from 1 through $gridColumns {
+        .col#{$infix}-#{$i} {
+          flex: 0 0 percentage(divide($i, $gridColumns));
+          max-width: percentage(divide($i, $gridColumns));
+        }
+      }
+    }
+  }
+}

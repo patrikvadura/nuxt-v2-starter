@@ -1,5 +1,50 @@
-//layout
-$spacer: .5rem;
+// LAYOUT
+// Sizing
+$spacer: 1rem;
+$spacers: ();
+$spacers: map-merge(
+    (
+      0: 0,
+      1: ($spacer * .5),
+      2: $spacer,
+      3: ($spacer * 2),
+      4: ($spacer * 4),
+      5: ($spacer * 6)
+    ),
+    $spacers
+);
+
+// Grid
+$sizes: ();
+$sizes: map-merge(
+    (
+      25: 25%,
+      50: 50%,
+      75: 75%,
+      100: 100%,
+      auto: auto
+    ),
+    $sizes
+);
+
+$gridBreakpoints: (
+  xs: 0,
+  sm: 599px,
+  md: 768px,
+  lg: 992px,
+  xl: 1200px
+);
+
+$containerMaxWidths: (
+  sm: 540px,
+  md: 720px,
+  lg: 960px,
+  xl: 1140px
+);
+
+$gridColumns:                10 !default;
+$gridGutterWidth:           1rem !default;
+$gridRowColumns:            5 !default;
 
 $wrapS: 56.25rem; //900px
 $wrapM: 75rem;    //1200px
@@ -7,32 +52,71 @@ $wrapL: 100rem;   //1600px
 $wrap: $wrapM;
 $calcWidth: calc((100vw - 30rem) / (75 - 30));
 
-//typography
+// Typography
 $fontFamily: "Brandon Grotesque", helvetica, sans-serif;
 
-//font-weight
+// Font-weight
 $fontWeightRegular: normal;
 $fontWeightLight: 300;
 $fontWeightMedium: 500;
 $fontWeightBold: bold;
 $fontWeightBlack: 900;
 
-//line-height
+// Line-height
 $lineHeightBase: $spacer * 3;
 $lineHeightSmall: $lineHeightBase * .75;
 $lineHeightLarge: $lineHeightBase * 1.25;
 $lineHeightExtraLarge: $lineHeightBase * 1.5;
 
-//colors - default
+// COLORS
+// -------------------
+// Theme colors
 $primary: #00dc82;
 $secondary: #4f4f4f;
-$black: #000;
-$gray: #d9d9d9;
+$positive: #6ead23;
+$negative: #b9411d;
 $white: #fff;
+$black: #000;
+$gray: #adb5bd;
 $light: #989898;
+$dark: #000;
 $typography: $secondary;
-$pageBg: $white;
-//colors - hover
+
+$themeColors: ();
+$themeColors: map-merge(
+    (
+      "primary":    $primary,
+      "secondary":  $secondary,
+      "positive":   $positive,
+      "negative":   $negative,
+      "white":      $white,
+      "black":      $black,
+      "gray":       $gray,
+      "light":      $light,
+      "dark":       $dark,
+      "typography": $typography,
+    ),
+    $themeColors
+);
+
+// Grays
+$gray-100: #f8f9fa;
+$gray-250: #dee2e6;
+$gray-500: #adb5bd;
+$gray-750: #495057;
+
+$grays: ();
+$grays: map-merge(
+    (
+      "100": $gray-100,
+      "250": $gray-250,
+      "500": $gray-500,
+      "750": $gray-750,
+    ),
+    $grays
+);
+
+// Hover
 $primaryHover: #09a867;
 $secondaryHover: #363636;
 $blackHover: $white;
@@ -41,7 +125,33 @@ $whiteHover: $black;
 $lightHover: #4f4f4f;
 $typographyHover: $black;
 
-//header - default
+// GLOBAL
+// -------------------
+// Body
+$pageBg: $white;
+$body-color: $typography;
+$linkColor: themeColor("primary");
+$linkDecoration: none;
+$linkHoverDecoration: underline;
+
+// Z-index master
+$zIndexSticky: 10;
+$zIndexFixed: 10;
+$zIndexModal: 20;
+
+// Buttons
+$buttonOutlined: false;
+
+// Buttons - default
+$buttonTextSize: .825rem;
+$buttonTextWeight: $fontWeightRegular;
+$buttonTextDecoration: none;
+$buttonTextTransform: none;
+$buttonBorderRadius: .25rem;
+
+// HEADER
+// -------------------
+// Header - default
 $headerBackgroundColor: $white;
 $headerShadow: true;
 $headerLinkColor: $typography;
@@ -51,9 +161,21 @@ $headerLinkTransform: uppercase;
 $headerLinkBorderSize: .25rem;
 $headerLinkBorderColor: transparent;
 $headerLinkBorderColorHover: $primary;
-//header - mobile navigation
+
+// Header - mobile navigation
 $headerMobileNavBackgroundColor: $white;
 $headerMobileNavIconColor: $secondary;
+
+// UTILITIES
+$displays: none, inline, inline-block, block, table, table-row, table-cell, flex, inline-flex;
+$sides: left, top, right, bottom;
+$orientations: x, y;
+$overflows: auto, hidden;
+$positions: static, relative, absolute, fixed, sticky;
+$user-selects: all, auto, none;
+$spacingProperties: margin, padding;
+$flexDirections: column, row;
+$flexProperties: flex-start, center, flex-end, stretch, space-between, space-around, space-evently, inherit, revert;
 
 @import 'mixins';
 @import 'typography';
