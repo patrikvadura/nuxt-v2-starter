@@ -126,11 +126,26 @@ export default {
       font-weight: $headerLinkWeight;
       color: $headerLinkColor;
       text-decoration: none;
-      border-top: $headerLinkBorderSize solid $headerLinkBorderColor;
       transition: all .6s ease-in-out;
 
-      &:hover {
-        border-top: $headerLinkBorderSize solid $headerLinkBorderColorHover;
+      @if $headerLinkStyle == border {
+        #{'border'}-#{$headerLinkBorderSide}: $headerLinkBorderSize solid $headerLinkBorderColor;
+
+        &:hover {
+          color: $headerLinkColorHover;
+          #{'border'}-#{$headerLinkBorderSide}: $headerLinkBorderSize solid $headerLinkBorderColorHover;
+        }
+      }
+
+      @if $headerLinkStyle == background {
+        margin: 0 .15rem;
+        background: $headerLinkBackground;
+        border-radius: $headerLinkBorderRadius;
+
+        &:hover {
+          color: $headerLinkColorHover;
+          background: $headerLinkBackgroundHover;
+        }
       }
 
       @include media-queries-down(sm) {

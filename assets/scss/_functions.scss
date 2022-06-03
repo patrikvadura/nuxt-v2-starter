@@ -17,7 +17,7 @@
   @return map-get($spacers, $key);
 }
 
-@function themeColor($key: "primary") {
+@function themeColor($key) {
   @return map-get($themeColors, $key);
 }
 

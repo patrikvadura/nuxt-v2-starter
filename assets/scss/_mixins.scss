@@ -1,5 +1,3 @@
-@import 'functions';
-
 // Style
 @mixin shadow($color, $intensity) {
   box-shadow: .15rem .15rem .25rem 0 rgba($color, $intensity);

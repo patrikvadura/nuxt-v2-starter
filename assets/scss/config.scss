@@ -116,6 +116,8 @@ $grays: map-merge(
     $grays
 );
 
+@import 'functions';
+
 // Hover
 $primaryHover: #09a867;
 $secondaryHover: #363636;
@@ -152,19 +154,37 @@ $buttonBorderRadius: .25rem;
 // HEADER
 // -------------------
 // Header - default
-$headerBackgroundColor: $white;
+$headerBackgroundColor: themeColor("white");
 $headerShadow: true;
+$headerLinkStyle: border;
+$headerLinkBackground: transparent;
+$headerLinkBackgroundHover: $light;
 $headerLinkColor: $typography;
+$headerLinkColorHover: $typography;
 $headerLinkSize: 1rem;
 $headerLinkWeight: $fontWeightRegular;
 $headerLinkTransform: uppercase;
+$headerLinkBorderSide: top;
 $headerLinkBorderSize: .25rem;
 $headerLinkBorderColor: transparent;
 $headerLinkBorderColorHover: $primary;
+$headerLinkBorderRadius: .5rem;
 
 // Header - mobile navigation
 $headerMobileNavBackgroundColor: $white;
 $headerMobileNavIconColor: $secondary;
+
+// FOOTER
+// -------------------
+// Footer
+$footerStyle: background;
+$footerBackgroundColor: $dark;
+$footerCopyrightTextColor: $white;
+$footerCopyrightTextSize: .825rem;
+$footerCopyrightTextWeight: $fontWeightRegular;
+$footerCopyrightTextTransform: uppercase;
+$footerBorderSize: .15rem;
+$footerBorderColor: $light;
 
 // UTILITIES
 $displays: none, inline, inline-block, block, table, table-row, table-cell, flex, inline-flex;
