@@ -25,6 +25,6 @@ export default {
 
 <style lang="scss" scoped>
 .body {
-  @include clamp($property: margin-top, $axis:null, $min: 4, $max: 6);
+  @include clamp($property: margin-top, $axis:null, $values: "4 , 6");
 }
 </style>

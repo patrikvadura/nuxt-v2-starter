@@ -41,6 +41,23 @@
 
       <hr class="mt-4">
 
+      <h4 id="colors" class="mt-4">
+        Colors
+      </h4>
+
+      <div class="colorExample__primary" />
+      <div class="colorExample__secondary" />
+      <div class="colorExample__positive" />
+      <div class="colorExample__negative" />
+      <div class="colorExample__white" />
+      <div class="colorExample__black" />
+      <div class="colorExample__gray" />
+      <div class="colorExample__light" />
+      <div class="colorExample__dark" />
+      <div class="colorExample__typography" />
+
+      <hr class="mt-4">
+
       <h4 id="buttons" class="mt-4">
         Buttons
       </h4>
@@ -400,11 +417,11 @@ export default {
 <style lang="scss" scoped>
 .heading {
   padding: 3rem 0;
-  background: $primary;
+  background: themeColor("primary");
 
   h1,
   .link {
-    color: $white;
+    color: themeColor("white");
   }
 }
 
@@ -416,7 +433,7 @@ export default {
 
   li a {
     padding-right: 1rem;
-    color: $white;
+    color: themeColor("white");
   }
 }
 
@@ -424,11 +441,42 @@ export default {
   text-align: center;
   line-height: 10rem;
   height: 10rem;
-  color: $white;
-  background: rgba($primary, .5);
+  color: themeColor("white");
+  background: rgba(themeColor("primary"), .5);
 
   &:nth-child(odd) {
-    background: rgba($primary, 1);
+    background: rgba(themeColor("primary"), 1);
+  }
+}
+
+@mixin colorExample($color) {
+  background: $color;
+
+  &:hover {
+    background: darken($color, 15%);
+  }
+}
+
+.colorExample {
+  display: inline-block;
+  margin-right: 1rem;
+  width: 3rem;
+  height: 3rem;
+  border-radius: 50%;
+
+  @each $color, $value in $themeColors {
+    @if $color == "white" {
+      &__#{$color} {
+        @extend .colorExample;
+        @include colorExample($value);
+        @include shadow(themeColor("black"), .1);
+      }
+    } @else {
+      &__#{$color} {
+        @extend .colorExample;
+        @include colorExample($value);
+      }
+    }
   }
 }
 </style>

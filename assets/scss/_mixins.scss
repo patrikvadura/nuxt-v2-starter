@@ -4,7 +4,11 @@
 }
 
 //clamp
-@mixin clamp($property, $axis, $min, $max) {
+@mixin clamp($property, $axis, $values) {
+  $list: split-str($values, ',');
+  $min: nth($list, 1);
+  $max: nth($list, 2);
+
   @if $axis == 'x' {
     #{$property}: 0 unquote("clamp(#{$min} * 1rem, calc(#{$min} * 1rem + (#{$max} - #{$min}) * #{$calcWidth}), #{$max} * 1rem)");
   } @else if $axis == 'y' {
@@ -92,6 +96,22 @@
       &y-#{$i - 1} {
         #{$property}: $spacing * $size 0;
       }
+    }
+  }
+}
+
+//fontSetting
+@mixin fontSetting($selector, $weight, $lineHeight, $transform) {
+  #{$selector} {
+    @include clamp($property:font-size, $axis: null, $values: fontSize("#{$selector}"));
+
+    font-weight: fontWeight("#{$weight}");
+    line-height: lineHeight("#{$lineHeight}");
+    text-transform: $transform;
+
+    span,
+    b {
+      font-weight: fontWeight("bold");
     }
   }
 }

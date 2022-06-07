@@ -22,7 +22,7 @@ export default {
 <style lang="scss" scoped>
 .footer {
   @include flex($direction: column, $justify: center, $align: flex-start);
-  @include clamp($property: height, $axis: null, $min: 4, $max: 6);
+  @include clamp($property: height, $axis: null, $values: $footerHeight);
 
   width: 100%;
   margin: 2rem 0 0;

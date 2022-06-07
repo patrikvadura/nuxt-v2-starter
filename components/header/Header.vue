@@ -20,7 +20,10 @@
           v-for="item in items"
           :key="item.id"
         >
-          <a :href="item.href">
+          <a
+            :href="item.href"
+            :class="item.special === true ? 'special' : ''"
+          >
             {{ item.title }}
           </a>
         </li>
@@ -38,11 +41,12 @@ export default {
   data () {
     return {
       items: [
-        { title: 'Dokumentace', href: 'https://nuxtjs.org/' },
-        { title: 'GitHub', href: 'https://github.com/nuxt' },
-        { title: 'Nuxt', href: 'https://nuxtjs.org/docs/get-started/installation' },
-        { title: 'Sass', href: 'https://sass-lang.com/documentation' },
-        { title: 'Icons', href: 'https://iconscout.com/unicons/explore/line' }
+        { title: 'Dokumentace', href: 'https://nuxtjs.org/', special: false },
+        { title: 'GitHub', href: 'https://github.com/nuxt', special: false },
+        { title: 'Nuxt', href: 'https://nuxtjs.org/docs/get-started/installation', special: false },
+        { title: 'Sass', href: 'https://sass-lang.com/documentation', special: false },
+        { title: 'Icons', href: 'https://iconscout.com/unicons/explore/line', special: false },
+        { title: 'Contact', href: 'https://patrikvadura.cz/', special: true }
       ]
     }
   },
@@ -66,7 +70,7 @@ export default {
 <style lang="scss" scoped>
 .header {
   @include flex($direction: column, $justify: flex-start, $align: center);
-  @include clamp($property: height, $axis: null, $min: 4, $max: 6);
+  @include clamp($property: height, $axis: null, $values: $headerHeight);
 
   position: fixed;
   top: 0;
@@ -80,7 +84,7 @@ export default {
   transition: all .3s ease-in-out;
 
   @if $headerShadow == true {
-    @include shadow($black, .1);
+    @include shadow(themeColor("black"), .1);
   }
 
   .wrap {
@@ -91,10 +95,10 @@ export default {
   }
 
   &Scroll {
-    @include clamp($property: height, $axis: null, $min: 4, $max: 4);
+    @include clamp($property: height, $axis: null, $values: $headerHeightScroll);
 
     ::v-deep .logo svg {
-      @include clamp($property: height, $axis: null, $min: 2, $max: 2);
+      @include clamp($property: height, $axis: null, $values: $logoSizeScroll);
     }
   }
 
@@ -115,7 +119,7 @@ export default {
       background: $headerMobileNavBackgroundColor;
 
       @if $headerShadow == true {
-        @include shadow($black, .1);
+        @include shadow(themeColor("black"), .1);
       }
     }
 
@@ -150,6 +154,11 @@ export default {
 
       @include media-queries-down(sm) {
         padding: 1rem;
+      }
+
+      &.special {
+        color: themeColor("primary");
+        font-weight: fontWeight("black");
       }
     }
 

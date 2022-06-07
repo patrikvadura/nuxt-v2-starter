@@ -1,4 +1,5 @@
 // LAYOUT
+// -------------------
 // Sizing
 $spacer: 1rem;
 $spacers: ();
@@ -42,96 +43,97 @@ $containerMaxWidths: (
   xl: 1140px
 );
 
-$gridColumns:                10 !default;
-$gridGutterWidth:           1rem !default;
-$gridRowColumns:            5 !default;
+$gridColumns: 10 !default;
+$gridGutterWidth: 1rem !default;
+$gridRowColumns:  5 !default;
 
-$wrapS: 56.25rem; //900px
-$wrapM: 75rem;    //1200px
-$wrapL: 100rem;   //1600px
-$wrap: $wrapM;
+$wrapS: 56.25rem;   //900px
+$wrapM: 75rem;      //1200px
+$wrapL: 100rem;     //1600px
+$wrap:  $wrapM;
 $calcWidth: calc((100vw - 30rem) / (75 - 30));
 
-// Typography
+// TYPOGRAPHY
+// -------------------
 $fontFamily: "Brandon Grotesque", helvetica, sans-serif;
 
+// Font-size
+$fontSizes: ();
+$fontSizes: map-merge(
+    (
+      "h1":   "2 , 3",
+      "h2":   "2 , 3",
+      "h3":   "1.5 , 2",
+      "h4":   "1 , 1.25",
+      "p":    "1 , 1.1",
+    ),
+    $fontSizes
+);
+
 // Font-weight
-$fontWeightRegular: normal;
-$fontWeightLight: 300;
-$fontWeightMedium: 500;
-$fontWeightBold: bold;
-$fontWeightBlack: 900;
+$fontWeights: ();
+$fontWeights: map-merge(
+    (
+      "regular":  normal,
+      "light":    300,
+      "medium":   500,
+      "bold":     bold,
+      "black":    900,
+    ),
+    $fontWeights
+);
 
 // Line-height
-$lineHeightBase: $spacer * 3;
-$lineHeightSmall: $lineHeightBase * .75;
-$lineHeightLarge: $lineHeightBase * 1.25;
-$lineHeightExtraLarge: $lineHeightBase * 1.5;
+$lineHeights: ();
+$lineHeights: map-merge(
+    (
+      "base":       $spacer * 3,
+      "small":      ($spacer * 3) * .75,
+      "large":      ($spacer * 3) * 1.25,
+      "extraLarge": ($spacer * 3) * 1.5,
+    ),
+    $lineHeights
+);
 
 // COLORS
 // -------------------
 // Theme colors
-$primary: #00dc82;
-$secondary: #4f4f4f;
-$positive: #6ead23;
-$negative: #b9411d;
-$white: #fff;
-$black: #000;
-$gray: #adb5bd;
-$light: #989898;
-$dark: #000;
-$typography: $secondary;
-
 $themeColors: ();
 $themeColors: map-merge(
     (
-      "primary":    $primary,
-      "secondary":  $secondary,
-      "positive":   $positive,
-      "negative":   $negative,
-      "white":      $white,
-      "black":      $black,
-      "gray":       $gray,
-      "light":      $light,
-      "dark":       $dark,
-      "typography": $typography,
+      "primary":    #00dc82,
+      "secondary":  #4f4f4f,
+      "positive":   #6ead23,
+      "negative":   #b9411d,
+      "white":      #fff,
+      "black":      #000,
+      "gray":       #adb5bd,
+      "light":      #989898,
+      "dark":       #000,
+      "typography": #4f4f4f,
     ),
     $themeColors
 );
 
 // Grays
-$gray-100: #f8f9fa;
-$gray-250: #dee2e6;
-$gray-500: #adb5bd;
-$gray-750: #495057;
-
 $grays: ();
 $grays: map-merge(
     (
-      "100": $gray-100,
-      "250": $gray-250,
-      "500": $gray-500,
-      "750": $gray-750,
+      "100": #f8f9fa,
+      "250": #dee2e6,
+      "500": #adb5bd,
+      "750": #495057,
     ),
     $grays
 );
 
 @import 'functions';
 
-// Hover
-$primaryHover: #09a867;
-$secondaryHover: #363636;
-$blackHover: $white;
-$grayHover: #bdbdbd;
-$whiteHover: $black;
-$lightHover: #4f4f4f;
-$typographyHover: $black;
-
 // GLOBAL
 // -------------------
 // Body
-$pageBg: $white;
-$body-color: $typography;
+$pageBg: themeColor("white");
+$bodyColor: themeColor("typography");
 $linkColor: themeColor("primary");
 $linkDecoration: none;
 $linkHoverDecoration: underline;
@@ -146,7 +148,7 @@ $buttonOutlined: false;
 
 // Buttons - default
 $buttonTextSize: .825rem;
-$buttonTextWeight: $fontWeightRegular;
+$buttonTextWeight: fontWeight("regular");
 $buttonTextDecoration: none;
 $buttonTextTransform: none;
 $buttonBorderRadius: .25rem;
@@ -156,37 +158,45 @@ $buttonBorderRadius: .25rem;
 // Header - default
 $headerBackgroundColor: themeColor("white");
 $headerShadow: true;
+$headerHeight: "4 , 6";
+$headerHeightScroll: "4 , 4";
 $headerLinkStyle: border;
 $headerLinkBackground: transparent;
-$headerLinkBackgroundHover: $light;
-$headerLinkColor: $typography;
-$headerLinkColorHover: $typography;
+$headerLinkBackgroundHover: themeColor("light");
+$headerLinkColor: themeColor("typography");
+$headerLinkColorHover: themeColor("typography");
 $headerLinkSize: 1rem;
-$headerLinkWeight: $fontWeightRegular;
+$headerLinkWeight: fontWeight("regular");
 $headerLinkTransform: uppercase;
 $headerLinkBorderSide: top;
 $headerLinkBorderSize: .25rem;
 $headerLinkBorderColor: transparent;
-$headerLinkBorderColorHover: $primary;
+$headerLinkBorderColorHover: themeColor("primary");
 $headerLinkBorderRadius: .5rem;
 
+// Header - logo
+$logoSize: "2 , 2.5";
+$logoSizeScroll: "2 , 2";
+
 // Header - mobile navigation
-$headerMobileNavBackgroundColor: $white;
-$headerMobileNavIconColor: $secondary;
+$headerMobileNavBackgroundColor: themeColor("white");
+$headerMobileNavIconColor: themeColor("secondary");
 
 // FOOTER
 // -------------------
 // Footer
 $footerStyle: background;
-$footerBackgroundColor: $dark;
-$footerCopyrightTextColor: $white;
+$footerHeight: "4 , 6";
+$footerBackgroundColor: themeColor("dark");
+$footerCopyrightTextColor: themeColor("white");
 $footerCopyrightTextSize: .825rem;
-$footerCopyrightTextWeight: $fontWeightRegular;
+$footerCopyrightTextWeight: fontWeight("regular");
 $footerCopyrightTextTransform: uppercase;
 $footerBorderSize: .15rem;
-$footerBorderColor: $light;
+$footerBorderColor: themeColor("light");
 
 // UTILITIES
+// -------------------
 $displays: none, inline, inline-block, block, table, table-row, table-cell, flex, inline-flex;
 $sides: left, top, right, bottom;
 $orientations: x, y;
