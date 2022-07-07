@@ -55,7 +55,8 @@ $calcWidth: calc((100vw - 30rem) / (75 - 30));
 
 // TYPOGRAPHY
 // -------------------
-$fontFamily: "Brandon Grotesque", helvetica, sans-serif;
+$fontDefault: "Roboto", helvetica, sans-serif;
+$fontHeading: "Playfair Display", helvetica, sans-serif;
 
 // Font-size
 $fontSizes: ();
@@ -101,8 +102,8 @@ $lineHeights: map-merge(
 $themeColors: ();
 $themeColors: map-merge(
     (
-      "primary":    #00dc82,
-      "secondary":  #4f4f4f,
+      "primary":    #8D9080,
+      "secondary":  #242E34,
       "positive":   #6ead23,
       "negative":   #b9411d,
       "white":      #fff,
@@ -153,6 +154,20 @@ $buttonTextDecoration: none;
 $buttonTextTransform: none;
 $buttonBorderRadius: .25rem;
 
+// Forms
+$inputOutlined: true;
+$inputShadow: false;
+
+// Input - default
+$inputColor: themeColor("black");
+$inputTextSize: .825rem;
+$inputTextWeight: fontWeight("regular");
+$inputTextDecoration: none;
+$inputTextTransform: none;
+$inputBorderWidth: 2px;
+$inputBorderRadius: .25rem;
+$inputBorder: $inputBorderWidth solid rgba($inputColor, .5);
+
 // HEADER
 // -------------------
 // Header - default
@@ -167,7 +182,7 @@ $headerLinkColor: themeColor("typography");
 $headerLinkColorHover: themeColor("typography");
 $headerLinkSize: 1rem;
 $headerLinkWeight: fontWeight("regular");
-$headerLinkTransform: uppercase;
+$headerLinkTransform: none;
 $headerLinkBorderSide: top;
 $headerLinkBorderSize: .25rem;
 $headerLinkBorderColor: transparent;
@@ -191,7 +206,7 @@ $footerBackgroundColor: themeColor("dark");
 $footerCopyrightTextColor: themeColor("white");
 $footerCopyrightTextSize: .825rem;
 $footerCopyrightTextWeight: fontWeight("regular");
-$footerCopyrightTextTransform: uppercase;
+$footerCopyrightTextTransform: none;
 $footerBorderSize: .15rem;
 $footerBorderColor: themeColor("light");
 

@@ -11,10 +11,14 @@
         &#{$orientation}-#{$spacer} {
           @if $orientation == "x" {
             #{$property}: 0 $value;
-          } @else {
+          } @elseif $orientation == "y" {
             #{$property}: $value 0;
           }
         }
+      }
+
+      &-#{$spacer} {
+        #{$property}: $value;
       }
     }
   }

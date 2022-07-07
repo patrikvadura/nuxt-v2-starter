@@ -101,10 +101,11 @@
 }
 
 //fontSetting
-@mixin fontSetting($selector, $weight, $lineHeight, $transform) {
+@mixin fontSetting($selector, $fontFamily: $fontDefault, $weight, $lineHeight, $transform: none) {
   #{$selector} {
     @include clamp($property:font-size, $axis: null, $values: fontSize("#{$selector}"));
 
+    font-family: $fontFamily;
     font-weight: fontWeight("#{$weight}");
     line-height: lineHeight("#{$lineHeight}");
     text-transform: $transform;

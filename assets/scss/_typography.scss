@@ -1,22 +1,21 @@
 @include fontSetting(
   $selector: h1,
+  $fontFamily: $fontHeading,
   $weight: light,
-  $lineHeight: extraLarge,
-  $transform: uppercase
+  $lineHeight: extraLarge
 );
 
 @include fontSetting(
   $selector: h2,
+  $fontFamily: $fontHeading,
   $weight: light,
-  $lineHeight: large,
-  $transform: none
+  $lineHeight: large
 );
 
 @include fontSetting(
   $selector: h3,
   $weight: bold,
-  $lineHeight: base,
-  $transform: uppercase
+  $lineHeight: base
 );
 
 @include fontSetting(
@@ -29,6 +28,5 @@
 @include fontSetting(
   $selector: p,
   $weight: light,
-  $lineHeight: base,
-  $transform: none
+  $lineHeight: base
 );

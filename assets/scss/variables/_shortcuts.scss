@@ -1,0 +1,9 @@
+/// SHORTCUTS
+// Container
+.bg {
+  @each $color, $value in $themeColors {
+    &-#{$color} {
+      background: $value;
+    }
+  }
+}

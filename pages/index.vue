@@ -204,6 +204,34 @@
 
       <hr class="mt-4">
 
+      <h4 id="buttons" class="mt-4">
+        Forms
+      </h4>
+
+      <h5>Input</h5>
+
+      <div class="grid-3">
+        <div>
+          <BaseInput placeholder="Placeholder">
+            Label
+          </BaseInput>
+        </div>
+
+        <div class="p-2 bg-primary">
+          <BaseInput placeholder="Placeholder" negative>
+            Label
+          </BaseInput>
+        </div>
+
+        <div>
+          <BaseInput placeholder="Placeholder" light>
+            Label
+          </BaseInput>
+        </div>
+      </div>
+
+      <hr class="mt-4">
+
       <h4 id="grid" class="mt-4">
         Grid examples
       </h4>
