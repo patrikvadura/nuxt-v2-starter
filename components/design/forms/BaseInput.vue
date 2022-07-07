@@ -67,7 +67,7 @@ export default {
 
     &.primary {
       @include labelVariant(
-        $color: $inputColor
+        $color: $inputTextColor
       )
     }
 
@@ -126,7 +126,7 @@ export default {
         border: $border;
 
         &::placeholder {
-          color: rgba($color, .5);
+          color: rgba($color, .3);
         }
       } @else {
         color: $color;
@@ -146,7 +146,7 @@ export default {
     &.primary {
       @include inputVariant(
         $background: $inputColor,
-        $color: $inputColor,
+        $color: $inputTextColor,
         $border: $inputBorder
       )
     }

@@ -73,7 +73,7 @@
           Button
         </BaseButton>
 
-        <BaseButton href="/" gray small>
+        <BaseButton href="/" light small>
           Button
         </BaseButton>
 
@@ -82,7 +82,7 @@
         </BaseButton>
       </div>
 
-      <div class="row mt-4">
+      <div class="row mt-3">
         <BaseButton href="/" small>
           <BaseIcon />
           Button
@@ -93,7 +93,7 @@
           Button
         </BaseButton>
 
-        <BaseButton href="/" gray small>
+        <BaseButton href="/" light small>
           <BaseIcon />
           Button
         </BaseButton>
@@ -115,7 +115,7 @@
           Button
         </BaseButton>
 
-        <BaseButton href="/" gray>
+        <BaseButton href="/" light>
           Button
         </BaseButton>
 
@@ -124,7 +124,7 @@
         </BaseButton>
       </div>
 
-      <div class="row mt-4">
+      <div class="row mt-3">
         <BaseButton href="/">
           <BaseIcon />
           Button
@@ -135,7 +135,7 @@
           Button
         </BaseButton>
 
-        <BaseButton href="/" gray>
+        <BaseButton href="/" light>
           <BaseIcon />
           Button
         </BaseButton>
@@ -157,7 +157,7 @@
           Button
         </BaseButton>
 
-        <BaseButton href="/" gray medium>
+        <BaseButton href="/" light medium>
           Button
         </BaseButton>
 
@@ -166,7 +166,7 @@
         </BaseButton>
       </div>
 
-      <div class="row mt-4">
+      <div class="row mt-3">
         <BaseButton href="/" medium>
           <BaseIcon />
           Button
@@ -177,7 +177,7 @@
           Button
         </BaseButton>
 
-        <BaseButton href="/" gray medium>
+        <BaseButton href="/" light medium>
           <BaseIcon />
           Button
         </BaseButton>
@@ -196,7 +196,7 @@
           Button
         </BaseButton>
 
-        <BaseButton href="/" secondary wide>
+        <BaseButton class="mt-3" href="/" secondary wide>
           <BaseIcon />
           Button
         </BaseButton>
@@ -215,18 +215,24 @@
           <BaseInput placeholder="Placeholder">
             Label
           </BaseInput>
+
+          <BaseInput placeholder="Placeholder" />
         </div>
 
         <div class="p-2 bg-primary">
           <BaseInput placeholder="Placeholder" negative>
             Label
           </BaseInput>
+
+          <BaseInput placeholder="Placeholder" negative />
         </div>
 
         <div>
           <BaseInput placeholder="Placeholder" light>
             Label
           </BaseInput>
+
+          <BaseInput placeholder="Placeholder" light />
         </div>
       </div>
 
@@ -234,21 +240,67 @@
 
       <div class="grid-3">
         <div>
+          <BaseCheckbox checked>
+            Label
+          </BaseCheckbox>
+
           <BaseCheckbox>
             Label
           </BaseCheckbox>
         </div>
 
         <div class="p-2 bg-primary">
+          <BaseCheckbox checked negative>
+            Label
+          </BaseCheckbox>
+
           <BaseCheckbox negative>
             Label
           </BaseCheckbox>
         </div>
 
         <div>
+          <BaseCheckbox checked light>
+            Label
+          </BaseCheckbox>
+
           <BaseCheckbox light>
             Label
           </BaseCheckbox>
+        </div>
+      </div>
+
+      <h5>Radio</h5>
+
+      <div class="grid-3">
+        <div>
+          <BaseRadio name="radio" checked>
+            Label
+          </BaseRadio>
+
+          <BaseRadio name="radio">
+            Label
+          </BaseRadio>
+        </div>
+
+        <div class="p-2 bg-primary">
+          <BaseRadio name="radio2" checked negative>
+            Label
+          </BaseRadio>
+
+          <BaseRadio name="radio2" negative>
+            Label
+          </BaseRadio>
+        </div>
+
+        <div>
+          <BaseRadio name="radio3" checked light>
+            Label
+          </BaseRadio>
+
+          <BaseRadio name="radio3" light>
+            Label
+          </BaseRadio>
         </div>
       </div>
 

@@ -62,6 +62,12 @@ export default {
   cursor: pointer;
   transition: all 300ms ease-in-out;
 
+  &:not(:only-child) {
+    &:not(:last-child) {
+      margin-right: 1rem;
+    }
+  }
+
   &::first-letter {
     text-transform: uppercase;
   }

@@ -1,13 +1,14 @@
 <template>
   <label
     :id="id"
-    class="baseCheckbox"
+    class="baseRadio"
     :class="classes"
   >
     <slot />
 
     <input
-      type="checkbox"
+      type="radio"
+      :name="name"
       :checked="checked"
     >
 
@@ -21,6 +22,7 @@
 export default {
   props: {
     id: { type: String, default: null },
+    name: { type: String, default: 'radio' },
     checked: { type: Boolean, default: false },
 
     // color variations
@@ -51,7 +53,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.baseCheckbox {
+.baseRadio {
   display: block;
   position: relative;
   padding-left: 2rem;
@@ -158,7 +160,7 @@ export default {
     left: 0;
     height: 1.5rem;
     width: 1.5rem;
-    border-radius: $checkboxBorderRadius;
+    border-radius: 50%;
 
     &:after {
       content: "";

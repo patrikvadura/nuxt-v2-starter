@@ -62,7 +62,7 @@ $fontHeading: "Playfair Display", helvetica, sans-serif;
 $fontSizes: ();
 $fontSizes: map-merge(
     (
-      "h1":   "2 , 3",
+      "h1":   "3 , 4",
       "h2":   "2 , 3",
       "h3":   "1.5 , 2",
       "h4":   "1 , 1.25",
@@ -109,7 +109,7 @@ $themeColors: map-merge(
       "white":      #fff,
       "black":      #000,
       "gray":       #adb5bd,
-      "light":      #989898,
+      "light":      #b9b9b9,
       "dark":       #000,
       "typography": #4f4f4f,
     ),
@@ -160,6 +160,7 @@ $inputShadow: false;
 
 // Input - default
 $inputColor: themeColor("black");
+$inputTextColor: themeColor("typography");
 $inputTextSize: .825rem;
 $inputTextWeight: fontWeight("regular");
 $inputTextDecoration: none;
@@ -168,15 +169,16 @@ $inputBorderWidth: 2px;
 $inputBorderRadius: .25rem;
 $inputBorder: $inputBorderWidth solid rgba($inputColor, .5);
 
-// Checkbox - default
+// Checkbox / Radio - default
 $checkboxColor: themeColor("primary");
+$checkboxTextColor: themeColor("typography");
 $checkboxTextSize: .825rem;
 $checkboxTextWeight: fontWeight("regular");
 $checkboxTextDecoration: none;
 $checkboxTextTransform: none;
 $checkboxBorderWidth: 2px;
 $checkboxBorderRadius: .25rem;
-$checkboxBorder: $inputBorderWidth solid rgba($inputColor, .5);
+$checkboxBorder: $inputBorderWidth solid rgba($checkboxColor, .5);
 
 // HEADER
 // -------------------
