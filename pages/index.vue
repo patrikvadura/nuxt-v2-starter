@@ -274,31 +274,95 @@
 
       <div class="grid-3">
         <div>
-          <BaseRadio name="radio" checked>
+          <BaseRadio name="radio" small checked>
             Label
           </BaseRadio>
 
-          <BaseRadio name="radio">
+          <BaseRadio name="radio" small>
             Label
           </BaseRadio>
         </div>
 
         <div class="p-2 bg-primary">
-          <BaseRadio name="radio2" checked negative>
+          <BaseRadio name="radio2" small checked negative>
             Label
           </BaseRadio>
 
-          <BaseRadio name="radio2" negative>
+          <BaseRadio name="radio2" small negative>
             Label
           </BaseRadio>
         </div>
 
         <div>
-          <BaseRadio name="radio3" checked light>
+          <BaseRadio name="radio3" small checked light>
             Label
           </BaseRadio>
 
-          <BaseRadio name="radio3" light>
+          <BaseRadio name="radio3" small light>
+            Label
+          </BaseRadio>
+        </div>
+      </div>
+
+      <div class="grid-3">
+        <div>
+          <BaseRadio name="radio4" checked>
+            Label
+          </BaseRadio>
+
+          <BaseRadio name="radio4">
+            Label
+          </BaseRadio>
+        </div>
+
+        <div class="p-2 bg-primary">
+          <BaseRadio name="radio5" checked negative>
+            Label
+          </BaseRadio>
+
+          <BaseRadio name="radio5" negative>
+            Label
+          </BaseRadio>
+        </div>
+
+        <div>
+          <BaseRadio name="radio6" checked light>
+            Label
+          </BaseRadio>
+
+          <BaseRadio name="radio6" light>
+            Label
+          </BaseRadio>
+        </div>
+      </div>
+
+      <div class="grid-3">
+        <div>
+          <BaseRadio name="radio7" medium checked>
+            Label
+          </BaseRadio>
+
+          <BaseRadio name="radio7" medium>
+            Label
+          </BaseRadio>
+        </div>
+
+        <div class="p-2 bg-primary">
+          <BaseRadio name="radio8" medium checked negative>
+            Label
+          </BaseRadio>
+
+          <BaseRadio name="radio8" medium negative>
+            Label
+          </BaseRadio>
+        </div>
+
+        <div>
+          <BaseRadio name="radio9" medium checked light>
+            Label
+          </BaseRadio>
+
+          <BaseRadio name="radio9" medium light>
             Label
           </BaseRadio>
         </div>

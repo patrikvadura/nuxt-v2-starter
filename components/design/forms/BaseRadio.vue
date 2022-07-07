@@ -31,7 +31,7 @@ export default {
     light: { type: Boolean, default: false },
 
     // sizing
-    wide: { type: Boolean, default: false },
+    default: { type: Boolean, default: true },
     small: { type: Boolean, default: false },
     medium: { type: Boolean, default: false }
   },
@@ -44,6 +44,7 @@ export default {
         light: this.light,
 
         // sizing
+        default: this.default,
         small: this.small,
         medium: this.medium
       }
@@ -56,14 +57,78 @@ export default {
 .baseRadio {
   display: block;
   position: relative;
-  padding-left: 2rem;
   cursor: pointer;
   font-size: $checkboxTextSize;
-  line-height: 1.5rem;
   user-select: none;
 
-  &:not(:last-child) {
-    margin-bottom: 1rem;
+  // size
+  @mixin checkboxSizingVariant ($sizes, $sizesAfter, $positions) {
+    $size: split-str($sizes, ','); // height, width
+    $sizeAfter: split-str($sizesAfter, ','); // height, width
+    $position: split-str($positions, ','); // left, top, left2, top2
+
+    padding-left: unquote("calc((#{nth($size, 2)} * 1rem) * 1.5)");
+    line-height: unquote("calc(#{nth($size, 1)} * 1rem)");
+
+    &:not(:last-child) {
+      margin-bottom: unquote("calc((#{nth($size, 1)} * 1rem) * .5)");
+    }
+
+    .checkmark {
+      height: unquote("calc(#{nth($size, 1)} * 1rem)");
+      width: unquote("calc(#{nth($size, 2)} * 1rem)");
+
+      &:after {
+        height: unquote("calc(#{nth($sizeAfter, 1)} * 1rem)");
+        width: unquote("calc(#{nth($sizeAfter, 2)} * 1rem)");
+      }
+    }
+
+    @if $inputOutlined == true {
+      .checkmark {
+        &:after {
+          left: unquote("calc(#{nth($position, 1)} * 1rem)");
+          top: unquote("calc(#{nth($position, 2)} * 1rem)");
+        }
+      }
+    } @else {
+      .checkmark {
+        &:after {
+          left: unquote("calc((#{nth($position, 1)} * 1rem) + 5%)");
+          top: unquote("calc((#{nth($position, 2)} * 1rem) + 5%)");
+        }
+      }
+    }
+  }
+
+  &.default {
+    @include checkboxSizingVariant(
+      $sizes: '1.5 , 1.5',
+      $sizesAfter: ".75 , .45",
+      $positions: ".45 , .2"
+    )
+  }
+
+  &.small {
+    @include checkboxSizingVariant(
+      $sizes: '1 , 1',
+      $sizesAfter: ".5 , .3",
+      $positions: ".3 , .1"
+    );
+
+    .checkmark {
+      &:after {
+        border-width: 0 .15rem .15rem 0 !important;
+      }
+    }
+  }
+
+  &.medium {
+    @include checkboxSizingVariant(
+      $sizes: '2 , 2',
+      $sizesAfter: ".75 , .45",
+      $positions: ".65 , .4"
+    )
   }
 
   // color variations
@@ -80,8 +145,6 @@ export default {
         border: $border;
 
         &:after {
-          left: .45rem;
-          top: .2rem;
           border: solid $checkmark;
           border-width: 0 .2rem .2rem 0;
         }
@@ -102,8 +165,6 @@ export default {
         border: none;
 
         &:after {
-          left: .5rem;
-          top: .3rem;
           border: solid $checkmark;
           border-width: 0 .2rem .2rem 0;
         }
@@ -158,16 +219,12 @@ export default {
     position: absolute;
     top: 0;
     left: 0;
-    height: 1.5rem;
-    width: 1.5rem;
     border-radius: 50%;
 
     &:after {
       content: "";
       position: absolute;
       display: none;
-      width: .45rem;
-      height: .75rem;
       transform: rotate(45deg);
     }
   }
