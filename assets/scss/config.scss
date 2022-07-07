@@ -168,6 +168,16 @@ $inputBorderWidth: 2px;
 $inputBorderRadius: .25rem;
 $inputBorder: $inputBorderWidth solid rgba($inputColor, .5);
 
+// Checkbox - default
+$checkboxColor: themeColor("primary");
+$checkboxTextSize: .825rem;
+$checkboxTextWeight: fontWeight("regular");
+$checkboxTextDecoration: none;
+$checkboxTextTransform: none;
+$checkboxBorderWidth: 2px;
+$checkboxBorderRadius: .25rem;
+$checkboxBorder: $inputBorderWidth solid rgba($inputColor, .5);
+
 // HEADER
 // -------------------
 // Header - default

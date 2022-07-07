@@ -230,6 +230,28 @@
         </div>
       </div>
 
+      <h5>Checkbox</h5>
+
+      <div class="grid-3">
+        <div>
+          <BaseCheckbox>
+            Label
+          </BaseCheckbox>
+        </div>
+
+        <div class="p-2 bg-primary">
+          <BaseCheckbox negative>
+            Label
+          </BaseCheckbox>
+        </div>
+
+        <div>
+          <BaseCheckbox light>
+            Label
+          </BaseCheckbox>
+        </div>
+      </div>
+
       <hr class="mt-4">
 
       <h4 id="grid" class="mt-4">
