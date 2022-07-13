@@ -1,19 +1,21 @@
 <template>
-  <a
+  <button
     :id="id"
-    :href="href"
+    :type="type"
+    :value="value"
     :class="classes"
     class="baseButton"
   >
     <slot />
-  </a>
+  </button>
 </template>
 
 <script>
 export default {
   props: {
     id: { type: String, default: null },
-    href: { type: String, default: '' },
+    type: { type: String, default: 'submit' },
+    value: { type: String, default: '' },
 
     // color variations
     primary: { type: Boolean, default: true },
@@ -60,6 +62,8 @@ export default {
   text-decoration: $buttonTextDecoration;
   border-radius: $buttonBorderRadius;
   cursor: pointer;
+  outline: none !important;
+  box-shadow: none !important;
   transition: all 300ms ease-in-out;
 
   &:not(:only-child) {
@@ -93,7 +97,7 @@ export default {
   &-medium {
     @include flex($direction: null, $justify: center, $align: null);
 
-    padding: .5rem 1.5rem;
+    padding: 1rem 1.5rem;
     min-width: 15rem;
     font-size: $buttonTextSize * 1.25;
 
@@ -116,17 +120,18 @@ export default {
     color: colorContrast($background);
 
     @if $buttonOutlined {
-      border: .25rem solid $background;
-      background: transparent;
+      border: .25rem solid $background !important;
+      background: transparent !important;
 
       &:hover {
-        border: .25rem solid darken($background, 15%);
+        border: .25rem solid darken($background, 15%) !important;
       }
     } @else {
-      background: $background;
+      border: none !important;
+      background: $background !important;
 
       &:hover {
-        background: darken($background, 15%);
+        background: darken($background, 15%) !important;
       }
     }
 

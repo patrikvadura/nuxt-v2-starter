@@ -1,10 +1,14 @@
-//basic
+// Style
 @mixin shadow($color, $intensity) {
   box-shadow: .15rem .15rem .25rem 0 rgba($color, $intensity);
 }
 
 //clamp
-@mixin clamp($property, $axis, $min, $max) {
+@mixin clamp($property, $axis, $values) {
+  $list: split-str($values, ',');
+  $min: nth($list, 1);
+  $max: nth($list, 2);
+
   @if $axis == 'x' {
     #{$property}: 0 unquote("clamp(#{$min} * 1rem, calc(#{$min} * 1rem + (#{$max} - #{$min}) * #{$calcWidth}), #{$max} * 1rem)");
   } @else if $axis == 'y' {
@@ -19,66 +23,101 @@
   display: flex;
   @if $direction {
     flex-direction: $direction;
-  } @else if $justify {
+  } @if $justify {
     justify-content: $justify;
-  } @else if $align {
+  } @if $align {
     align-items: $align;
   }
 }
 
 //mediaQueries
-@mixin media-queries($size) {
-  @if $size == xs {
-    @media (max-width: 599px) { @content; }
-  } @else if $size == sm {
-    @media (min-width: 600px) { @content; }
-  } @else if $size == md {
-    @media (min-width: $wrapS) { @content; }
-  } @else if $size == lg {
-    @media (min-width: $wrapM) { @content; }
-  } @else if $size == xl {
-    @media (min-width: $wrapL) { @content; }
+@mixin media-queries-up($name, $breakpoints: $gridBreakpoints) {
+  $min: breakpoint-min($name, $breakpoints);
+  @if $min {
+    @media (min-width: $min) {
+      @content;
+    }
+  } @else {
+    @content;
+  }
+}
+
+@mixin media-queries-down($name, $breakpoints: $gridBreakpoints) {
+  $max: breakpoint-max($name, $breakpoints);
+  @if $max {
+    @media (max-width: $max) {
+      @content;
+    }
+  } @else {
+    @content;
+  }
+}
+
+@mixin media-queries-only($name, $breakpoints: $gridBreakpoints) {
+  $min: breakpoint-min($name, $breakpoints);
+  $max: breakpoint-max($name, $breakpoints);
+
+  @if $min != null and $max != null {
+    @media (min-width: $min) and (max-width: $max) {
+      @content;
+    }
+  } @else if $max == null {
+    @include media-breakpoint-up($name, $breakpoints) {
+      @content;
+    }
+  } @else if $min == null {
+    @include media-breakpoint-down($name, $breakpoints) {
+      @content;
+    }
   }
 }
 
 //generate
-@mixin generate($prefix, $property) {
-  $sizes: [0, .25, .5, 1, 1.5, 3];
-  $spacing: 1rem;
+@mixin config($prefix, $property, $sizes, $spacing) {
+  .#{$prefix} {
+    @for $i from 1 through length($sizes) {
+      $size: nth($sizes, $i);
 
-  @for $i from 1 through length($sizes) {
-    $size: nth($sizes, $i);
-
-    .#{$prefix}-#{$i - 1} {
-      #{$property}: $spacing * $size;
+      &l-#{$i - 1} {
+        #{$property}-left: $spacing * $size;
+      }
+      &t-#{$i - 1} {
+        #{$property}-top: $spacing * $size;
+      }
+      &r-#{$i - 1} {
+        #{$property}-right: $spacing * $size;
+      }
+      &b-#{$i - 1} {
+        #{$property}-bottom: $spacing * $size;
+      }
+      &x-#{$i - 1} {
+        #{$property}: 0 $spacing * $size;
+      }
+      &y-#{$i - 1} {
+        #{$property}: $spacing * $size 0;
+      }
     }
   }
 }
 
-@mixin generateAxis($prefix, $property) {
-  $sizes: [0, .25, .5, 1, 1.5, 3];
-  $spacing: 1rem;
+//fontSetting
+@mixin fontSetting($selector, $fontFamily: $fontDefault, $weight, $lineHeight, $transform: none) {
+  #{$selector} {
+    @include clamp($property:font-size, $axis: null, $values: fontSize("#{$selector}"));
 
-  @for $i from 1 through length($sizes) {
-    $size: nth($sizes, $i);
+    font-family: $fontFamily;
+    font-weight: fontWeight("#{$weight}");
+    line-height: lineHeight("#{$lineHeight}");
+    text-transform: $transform;
 
-    .#{$prefix}l-#{$i - 1} {
-      #{$property}-left: $spacing * $size;
-    }
-    .#{$prefix}t-#{$i - 1} {
-      #{$property}-top: $spacing * $size;
-    }
-    .#{$prefix}r-#{$i - 1} {
-      #{$property}-right: $spacing * $size;
-    }
-    .#{$prefix}b-#{$i - 1} {
-      #{$property}-bottom: $spacing * $size;
-    }
-    .#{$prefix}x-#{$i - 1} {
-      #{$property}: 0 $spacing * $size;
-    }
-    .#{$prefix}y-#{$i - 1} {
-      #{$property}: $spacing * $size 0;
+    span,
+    b {
+      font-weight: fontWeight("bold");
     }
   }
+}
+
+//customCSS
+@mixin customClass($property, $parameter) {
+  #{$property}: $parameter;
 }

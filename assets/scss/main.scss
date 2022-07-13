@@ -1,4 +1,8 @@
+@import 'functions';
 @import 'config';
+@import 'variables/layout';
+@import 'variables/grid';
+@import 'variables/shortcuts';
 
 //reset
 *,
@@ -14,19 +18,16 @@
 }
 
 html {
-  font-family: $fontFamily;
+  font-family: $fontDefault;
   overflow-x: hidden;
   scroll-behavior: smooth;
 }
 
 body {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin: 0;
   padding: 0;
+  margin: 0;
   background: $pageBg;
-  color: $typography;
+  color: $bodyColor;
   overflow-x: hidden;
   white-space: normal;
 }
@@ -36,45 +37,4 @@ iframe {
   max-width: 100%;
   vertical-align: middle;
   border: 0;
-}
-
-//layout
-@include generateAxis(p, padding);
-@include generateAxis(m, margin);
-
-//wrap
-.wrap {
-  @include clamp($property:padding, $axis:null, $min:1, $max:3);
-
-  margin: 0 auto;
-  position: relative;
-  width: 100%;
-  max-width: $wrap;
-}
-
-.wrapS {
-  padding: 0;
-  margin: 0 auto;
-  width: 100%;
-  max-width: $wrapS;
-}
-
-//grid
-@mixin grid($min, $gapCol, $gapRow) {
-  display: grid;
-  align-items: center;
-  width: 100%;
-  grid-template-columns: repeat(auto-fit, minmax(min(100%, unquote("min(100%, unit(#{$min}, rem))")), 1fr));
-  grid-column-gap: unquote("unit(#{$gapCol}, rem)");
-  row-gap: unquote("unit(#{$gapRow}, rem)");
-  overflow: hidden;
-}
-
-.grid {
-  &-2 { @include grid(16, 6, 4); }
-  &-3 { @include grid(20, 4, 3); }
-  &-4 { @include grid(16, 4, 3); }
-  &-5 { @include grid(18, 2, 2); }
-  &-6 { @include grid(14, 2, 2); }
-  &-7 { @include grid(12, 2, 2); }
 }

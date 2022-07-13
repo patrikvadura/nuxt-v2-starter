@@ -1,45 +1,238 @@
-//layout
-$spacer: .5rem;
+// LAYOUT
+// -------------------
+// Sizing
+$spacer: 1rem;
+$spacers: ();
+$spacers: map-merge(
+    (
+      0: 0,
+      1: ($spacer * .5),
+      2: $spacer,
+      3: ($spacer * 2),
+      4: ($spacer * 4),
+      5: ($spacer * 6)
+    ),
+    $spacers
+);
 
-$wrapS: 56.25rem; //900px
-$wrapM: 75rem;    //1200px
-$wrapL: 100rem;   //1600px
-$wrap: $wrapL;
+// Grid
+$sizes: ();
+$sizes: map-merge(
+    (
+      25: 25%,
+      50: 50%,
+      75: 75%,
+      100: 100%,
+      auto: auto
+    ),
+    $sizes
+);
+
+$gridBreakpoints: (
+  xs: 0,
+  sm: 599px,
+  md: 768px,
+  lg: 992px,
+  xl: 1200px
+);
+
+$containerMaxWidths: (
+  sm: 540px,
+  md: 720px,
+  lg: 960px,
+  xl: 1140px
+);
+
+$gridColumns: 10 !default;
+$gridGutterWidth: 1rem !default;
+$gridRowColumns:  5 !default;
+
+$wrapS: 56.25rem;   //900px
+$wrapM: 75rem;      //1200px
+$wrapL: 100rem;     //1600px
+$wrap:  $wrapM;
 $calcWidth: calc((100vw - 30rem) / (75 - 30));
 
-//typography
-$fontFamily: "Brandon Grotesque", helvetica, sans-serif;
+// TYPOGRAPHY
+// -------------------
+$fontDefault: "Roboto", helvetica, sans-serif;
+$fontHeading: "Playfair Display", helvetica, sans-serif;
 
-//font-weight
-$fontWeightRegular: normal;
-$fontWeightLight: 300;
-$fontWeightMedium: 500;
-$fontWeightBold: bold;
-$fontWeightBlack: 900;
+// Font-size
+$fontSizes: ();
+$fontSizes: map-merge(
+    (
+      "h1":   "3 , 4",
+      "h2":   "2 , 3",
+      "h3":   "1.5 , 2",
+      "h4":   "1 , 1.25",
+      "p":    "1 , 1.1",
+    ),
+    $fontSizes
+);
 
-//line-height
-$lineHeightBase: $spacer * 3;
-$lineHeightSmall: $lineHeightBase * .75;
-$lineHeightLarge: $lineHeightBase * 1.25;
-$lineHeightExtraLarge: $lineHeightBase * 1.5;
+// Font-weight
+$fontWeights: ();
+$fontWeights: map-merge(
+    (
+      "regular":  normal,
+      "light":    300,
+      "medium":   500,
+      "bold":     bold,
+      "black":    900,
+    ),
+    $fontWeights
+);
 
-//colors
-$primary: #00dc82;
-$secondary: #4f4f4f;
-$black: #000;
-$gray: #d9d9d9;
-$white: #fff;
-$light: #989898;
-$typography: $secondary;
-$pageBg: $white;
+// Line-height
+$lineHeights: ();
+$lineHeights: map-merge(
+    (
+      "base":       $spacer * 2,
+      "small":      ($spacer * 3) * .75,
+      "large":      ($spacer * 3) * 1.25,
+      "extraLarge": ($spacer * 3) * 1.5,
+    ),
+    $lineHeights
+);
 
-$primaryHover: #09a867;
-$secondaryHover: #363636;
-$blackHover: $white;
-$grayHover: #bdbdbd;
-$whiteHover: $black;
-$lightHover: #4f4f4f;
-$typographyHover: $black;
+// COLORS
+// -------------------
+// Theme colors
+$themeColors: ();
+$themeColors: map-merge(
+    (
+      "primary":    #8D9080,
+      "secondary":  #242E34,
+      "positive":   #6ead23,
+      "negative":   #b9411d,
+      "white":      #fff,
+      "black":      #000,
+      "gray":       #adb5bd,
+      "light":      #b9b9b9,
+      "dark":       #000,
+      "typography": #4f4f4f,
+    ),
+    $themeColors
+);
+
+// Grays
+$grays: ();
+$grays: map-merge(
+    (
+      "100": #f8f9fa,
+      "250": #dee2e6,
+      "500": #adb5bd,
+      "750": #495057,
+    ),
+    $grays
+);
+
+@import 'functions';
+
+// GLOBAL
+// -------------------
+// Body
+$pageBg: themeColor("white");
+$bodyColor: themeColor("typography");
+$linkColor: themeColor("primary");
+$linkDecoration: none;
+$linkHoverDecoration: underline;
+
+// Z-index master
+$zIndexSticky: 10;
+$zIndexFixed: 10;
+$zIndexModal: 20;
+
+// Buttons
+$buttonOutlined: false;
+
+// Buttons - default
+$buttonTextSize: .825rem;
+$buttonTextWeight: fontWeight("regular");
+$buttonTextDecoration: none;
+$buttonTextTransform: none;
+$buttonBorderRadius: .25rem;
+
+// Forms
+$inputOutlined: false;
+$inputShadow: false;
+
+// Input - default
+$inputColor: themeColor("black");
+$inputTextColor: themeColor("typography");
+$inputTextSize: .825rem;
+$inputTextWeight: fontWeight("regular");
+$inputTextDecoration: none;
+$inputTextTransform: none;
+$inputBorderWidth: 2px;
+$inputBorderRadius: .25rem;
+$inputBorder: $inputBorderWidth solid rgba($inputColor, .5);
+
+// Checkbox / Radio - default
+$checkboxColor: themeColor("primary");
+$checkboxTextColor: themeColor("typography");
+$checkboxTextSize: .825rem;
+$checkboxTextWeight: fontWeight("regular");
+$checkboxTextDecoration: none;
+$checkboxTextTransform: none;
+$checkboxBorderWidth: 2px;
+$checkboxBorderRadius: .25rem;
+$checkboxBorder: $inputBorderWidth solid rgba($checkboxColor, .5);
+
+// HEADER
+// -------------------
+// Header - default
+$headerBackgroundColor: themeColor("white");
+$headerShadow: true;
+$headerHeight: "4 , 6";
+$headerHeightScroll: "4 , 4";
+$headerLinkStyle: border;
+$headerLinkBackground: transparent;
+$headerLinkBackgroundHover: themeColor("light");
+$headerLinkColor: themeColor("typography");
+$headerLinkColorHover: themeColor("typography");
+$headerLinkSize: 1rem;
+$headerLinkWeight: fontWeight("regular");
+$headerLinkTransform: none;
+$headerLinkBorderSide: top;
+$headerLinkBorderSize: .25rem;
+$headerLinkBorderColor: transparent;
+$headerLinkBorderColorHover: themeColor("primary");
+$headerLinkBorderRadius: .5rem;
+
+// Header - logo
+$logoSize: "2 , 2.5";
+$logoSizeScroll: "2 , 2";
+
+// Header - mobile navigation
+$headerMobileNavBackgroundColor: themeColor("white");
+$headerMobileNavIconColor: themeColor("secondary");
+
+// FOOTER
+// -------------------
+// Footer
+$footerStyle: background;
+$footerHeight: "4 , 6";
+$footerBackgroundColor: themeColor("dark");
+$footerCopyrightTextColor: themeColor("white");
+$footerCopyrightTextSize: .825rem;
+$footerCopyrightTextWeight: fontWeight("regular");
+$footerCopyrightTextTransform: none;
+$footerBorderSize: .15rem;
+$footerBorderColor: themeColor("light");
+
+// UTILITIES
+// -------------------
+$displays: none, inline, inline-block, block, table, table-row, table-cell, flex, inline-flex;
+$sides: left, top, right, bottom;
+$orientations: x, y;
+$overflows: auto, hidden;
+$positions: static, relative, absolute, fixed, sticky;
+$user-selects: all, auto, none;
+$spacingProperties: margin, padding;
+$flexDirections: column, row;
+$flexProperties: flex-start, center, flex-end, stretch, space-between, space-around, space-evently, inherit, revert;
 
 @import 'mixins';
 @import 'typography';

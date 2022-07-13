@@ -1,0 +1,72 @@
+// Margin, padding
+@each $property in $spacingProperties {
+  .#{str-slice($property, 1, 1)} {
+    @each $spacer, $value in $spacers {
+      @each $side in $sides {
+        &#{str-slice($side, 1, 1)}-#{$spacer} {
+          #{$property}-#{$side}: $value;
+        }
+      }
+      @each $orientation in $orientations {
+        &#{$orientation}-#{$spacer} {
+          @if $orientation == "x" {
+            #{$property}: 0 $value;
+          } @else if $orientation == "y" {
+            #{$property}: $value 0;
+          }
+        }
+      }
+
+      &-#{$spacer} {
+        #{$property}: $value;
+      }
+    }
+  }
+}
+
+// Width
+@each $prop, $abbrev in (width: w, height: h) {
+  @each $size, $length in $sizes {
+    .#{$abbrev}-#{$size} { #{$prop}: $length !important; }
+  }
+}
+
+//wrap
+@mixin wrapParameters {
+  padding: 0 $spacer;
+  margin: 0 auto;
+  width: 100%;
+  @content;
+}
+
+.wrap {
+  @include wrapParameters {
+    max-width: $wrap;
+  }
+}
+
+//grid
+@mixin gridParameters($min, $gapCol, $gapRow) {
+  display: grid;
+  width: 100%;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, min(100%, #{$min}rem)), 1fr));
+  grid-column-gap: #{$gapCol}rem;
+  row-gap: #{$gapRow}rem;
+}
+
+@mixin columnConfig() {
+  $sizes: [1, 2, 3, 4, 5, 6];
+  $spacing: 1.5;
+
+  .grid {
+    @for $i from 1 through length($sizes) {
+      $size: nth($sizes, $i);
+
+      &-#{$i} {
+        @include gridParameters(((20 - $i * $spacing) - ($i - $spacing)), 2, 2);
+      }
+    }
+  }
+}
+
+@include columnConfig();

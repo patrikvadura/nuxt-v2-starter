@@ -22,6 +22,6 @@ export default {
 
 <style lang="scss" scoped>
 .BaseIcon {
-  color: $black;
+  color: themeColor("black");
 }
 </style>
