@@ -88,7 +88,7 @@ $fontWeights: map-merge(
 $lineHeights: ();
 $lineHeights: map-merge(
     (
-      "base":       $spacer * 3,
+      "base":       $spacer * 2,
       "small":      ($spacer * 3) * .75,
       "large":      ($spacer * 3) * 1.25,
       "extraLarge": ($spacer * 3) * 1.5,

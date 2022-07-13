@@ -1,6 +1,5 @@
 <template>
   <div
-    :id="id"
     class="baseInput"
   >
     <label
@@ -10,6 +9,9 @@
     </label>
 
     <input
+      :id="id"
+      :name="name"
+      :type="type"
       :placeholder="placeholder"
       :class="classes"
     >
@@ -20,6 +22,8 @@
 export default {
   props: {
     id: { type: String, default: null },
+    name: { type: String, default: '' },
+    type: { type: String, default: 'text' },
     placeholder: { type: String, default: '' },
 
     // color variations
@@ -53,6 +57,10 @@ export default {
 <style lang="scss" scoped>
 .baseInput {
   @include flex($direction: column, $justify: null, $align: null);
+
+  &:not(:last-child) {
+    margin-bottom: 2rem;
+  }
 
   label {
     padding: .5rem 0;

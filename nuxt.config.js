@@ -19,6 +19,10 @@ export default {
     ],
     script: [
       {
+        src: 'https://code.jquery.com/jquery-3.3.1.slim.min.js',
+        type: 'text/javascript'
+      },
+      {
         type: 'text/javascript',
         src: 'https://unpkg.com/feather-icons'
       }
